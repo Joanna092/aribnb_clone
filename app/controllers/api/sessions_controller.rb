@@ -10,7 +10,7 @@ module Api
           httponly: true
         }
 
-        render 'sessions/create'
+        render 'api/sessions/create'
       else
         render json: {
           success: false
@@ -24,7 +24,7 @@ module Api
 
       if session
         @user = session.user
-        render 'sessions/authenticated'
+        render 'api/sessions/authenticated'
       else
         render json: {
           authenticated: false

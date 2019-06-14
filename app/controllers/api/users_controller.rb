@@ -4,7 +4,7 @@ module Api
     @user = User.new(user_params)
 
       if @user.save
-        render 'users/create'
+        render 'api/users/create'
       else
         render json: { success: false }
       end
