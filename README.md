@@ -1,24 +1,34 @@
-# README
+## Running the server locally
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+After downloading the repository
+Install the gems
 
-Things you may want to cover:
+```
+bundle
+```
 
-* Ruby version
+Create the database
 
-* System dependencies
+```
+rails db:create
+```
 
-* Configuration
+Migrate the database
 
-* Database creation
+```
+rails db:migrate
+```
 
-* Database initialization
+Seed the database
 
-* How to run the test suite
+```
+rails db:seed
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Start server:
 
-* Deployment instructions
+```
+rails s
+```
 
-* ...
+Visit localhost:3000 
