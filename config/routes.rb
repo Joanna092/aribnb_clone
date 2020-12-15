@@ -6,6 +6,14 @@ Rails.application.routes.draw do
   get '/property/:id' => 'static_pages#property'
   get '/login' => 'static_pages#login'
 
+  get '/booking/:id/success' => 'static_pages#paymentSuccess'
+  get '/userpage' => 'static_pages#userpage'
+  get '/hosting' => 'static_pages#host_home'
+  get '/hosting/host_property' => 'static_pages#host_property'
+  get '/hosting/add_property' => 'static_pages#add_property'
+  get '/hosting/:id/success' => 'static_pages#property_success'
+
+
   namespace :api do
     # Add routes below this line
     resources :users, only: [:create]
