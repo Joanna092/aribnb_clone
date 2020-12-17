@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import Layout from '@src/user/layout';
 import LoginWidget from './loginWidget';
 import SignupWidget from './signupWidget';
-import { safeCredentials, handleErrors } from '@utils/fetchHelper';
+import { safeCredentials, handleErrors } from '../utils/fetchHelper';
 
 class Login extends React.Component {
   state = {

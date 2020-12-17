@@ -36,5 +36,6 @@ module Api
 
       render json: { success: true }, status: :ok if session&.destroy
     end
+
   end
 end
