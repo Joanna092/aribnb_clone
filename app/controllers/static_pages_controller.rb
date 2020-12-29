@@ -15,10 +15,16 @@ class StaticPagesController < ApplicationController
   end
 
   def paymentSuccess
+    @user_data = authorize
+    return unless @user_data
+
     render 'paymentSuccess'
   end
 
   def userpage
+    @user_data = authorize
+    return unless @user_data
+
     render 'userpage'
   end
 
@@ -27,15 +33,47 @@ class StaticPagesController < ApplicationController
   end
 
   def host_property
+    @user_data = authorize_host
+    return unless @user_data
+
     render 'host_property'
   end
 
   def add_property
+    @user_data = authorize_host
+    return unless @user_data
+
     render 'add_property'
   end
 
   def property_success
+    @user_data = authorize_host
+    return unless @user_data
+
     render 'property_success'
   end
 
+  private
+
+  def authorize
+    token = cookies.permanent.signed[:airbnb_session_token]
+    session = Session.find_by(token: token)
+
+    unless session
+      redirect_to '/'
+      return
+    end
+    session.user.to_json
+  end
+
+  def authorize_host
+    token = cookies.permanent.signed[:airbnb_session_token]
+    session = Session.find_by(token: token)
+
+    unless session
+      redirect_to '/hosting'
+      return
+    end
+    session.user.to_json
+  end
 end
