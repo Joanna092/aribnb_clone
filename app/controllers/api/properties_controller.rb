@@ -9,6 +9,20 @@ module Api
       render 'api/properties/index', status: :ok
     end
 
+    def index_by_user
+      @properties = Property.order(created_at: :desc).page(params[:page]).per(6)
+      return render json: { error: 'not_found' }, status: :not_found unless @properties
+
+      user = User.find_by(username: params[:username])
+
+      if user
+        @properties = user.properties.reverse
+        render 'api/properties/index_by_user', status: :ok
+      else
+        render json: { properties: [] }
+      end
+    end
+
     def create
       token = cookies.signed[:airbnb_session_token]
       session = Session.find_by(token: token)
