@@ -29,15 +29,14 @@ module Api
       return render json: { error: 'user not logged in' }, status: :unauthorized unless session
 
       if session
-        @user = session.user
-        # @property = @user.properties.new(properties_params)
-        @property = Property.new(properties_params)
+        user = session.user
+        @property = user.properties.new(properties_params)
 
         if @property.save
           render json: {
             property:
               {
-                username: @user.username,
+                username: user.username,
                 title: @property.title,
                 description: @property.description,
                 country: @property.country,
@@ -61,6 +60,12 @@ module Api
       return render json: { error: 'not_found' }, status: :not_found unless @property
 
       render 'api/properties/show', status: :ok
+    end
+
+    private
+
+    def properties_params
+      params.require(:property).permit(:title, :description, :city, :country, :price, :price_per_night, :max_guests, :bedrooms, :beds, :baths, :property_type)
     end
   end
 end

@@ -7,7 +7,7 @@ class Userpage extends React.Component {
   constructor() {
     super();
     this.state = {
-    //  user_tweets: [],
+      host_properties: [], //this should be user properties 
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -17,10 +17,10 @@ class Userpage extends React.Component {
       .then(handleErrors)
       .then((data) => {
         console.log(data)
-      /*  this.setState({
-          user_tweets: data.tweets,
-        });      */
-  } ) 
+        this.setState({
+          user_properties: data.properties, //I need to get normal user properties, not host's
+       });      
+  }) 
 }
 
   handleClick() {
