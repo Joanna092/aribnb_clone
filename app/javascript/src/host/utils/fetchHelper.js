@@ -30,6 +30,7 @@ export function jsonHeader(options = {}) {
   * Lets fetch include credentials in the request. This includes cookies and other possibly sensitive data.
   * Note: Never use for requests across (untrusted) domains.
   */
+
   export function safeCredentials(options = {}) {
     return Object.assign(options, {
       credentials: 'include',

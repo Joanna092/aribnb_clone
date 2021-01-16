@@ -22,6 +22,7 @@ class Addproperty extends React.Component {
       bedrooms: "",
       beds: "",
       baths: "",
+      image: ""
     };
     this.submit= this.submit.bind(this);
   }
@@ -36,24 +37,29 @@ class Addproperty extends React.Component {
     if (e) {
       e.preventDefault();
     }
+
+    let formData = new FormData();
+    for (let i = 0; i < filetInputElement.files.length; i++) {
+      formData.append('property[images][]', fileInputElement.files[i]);
+    }
+    // Set other params in the form data.
+    formData.set('property[title]', this.state.title);
+    formData.set('property[description]', this.state.description);
+    formData.set('property[country]', this.state.country);
+    formData.set('property[city]', this.state.city);
+    formData.set('property[property_type]', this.state.property_type);
+    formData.set('property[description]', this.state.description);
+    formData.set('property[price_per_night]', this.state.price_per_night);
+    formData.set('property[max_guests]', this.state.max_guests);
+    formData.set('property[beds]', this.state.beds);
+    formData.set('property[baths]', this.state.baths);
+    formData.set('property[image_url]', this.state.image);
+
     fetch(
       '/api/properties',
-      safeCredentials({
+      safeCredentialsForm ({
         method: "POST",
-        body: JSON.stringify({
-          property: {
-            title: this.state.title,
-            description: this.state.description,
-            country: this.state.country,
-            city: this.state.city,
-            property_type: this.state.property_type,
-            price_per_night: this.state.price_per_night,
-            max_guests: this.state.max_guests,
-            bedrooms: this.state.bedrooms,
-            beds: this.state.beds, 
-            baths: this.state.baths,
-          },
-        }),
+        body: formData,
       })
     )
       .then(handleErrors)
@@ -89,7 +95,7 @@ class Addproperty extends React.Component {
       bedrooms,
       beds, 
       baths,
-      image_url,
+      image,
       user,    
     } = this.state;
     return (
@@ -122,6 +128,8 @@ class Addproperty extends React.Component {
                 </div>
                 <div className="col-9">
                   <input
+                    value={image}
+                    onChange={this.handleChange}
                     type="file"
                     class="form-control-file"
                     id="exampleFormControlFile1"
