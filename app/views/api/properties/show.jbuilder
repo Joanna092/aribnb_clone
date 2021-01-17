@@ -13,7 +13,7 @@ json.property do
   json.beds @property.beds
   json.baths @property.baths
   json.image_url @property.image_url
-  
+
  # json.images @property.images
   json.images do
    json.array! @property.images do |image|

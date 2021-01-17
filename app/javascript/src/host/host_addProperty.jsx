@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Hostlayout from "@src/host/host_layout";
-import { handleErrors, safeCredentials } from './utils/fetchHelper';
+import { handleErrors, safeCredentialsForm } from './utils/fetchHelper';
 
 class Addproperty extends React.Component {
 
@@ -22,7 +22,8 @@ class Addproperty extends React.Component {
       bedrooms: "",
       beds: "",
       baths: "",
-      image: ""
+      image: "",
+      images: []
     };
     this.submit= this.submit.bind(this);
   }
@@ -39,8 +40,8 @@ class Addproperty extends React.Component {
     }
 
     let formData = new FormData();
-    for (let i = 0; i < filetInputElement.files.length; i++) {
-      formData.append('property[images][]', fileInputElement.files[i]);
+    for (let i = 0; i < this.state.images.length; i++) {
+      formData.append('property[images][]', this.state.images.files[i]);
     }
     // Set other params in the form data.
     formData.set('property[title]', this.state.title);
@@ -62,6 +63,7 @@ class Addproperty extends React.Component {
         body: formData,
       })
     )
+   
       .then(handleErrors)
       .then((data) => {
         console.log(data);
@@ -129,6 +131,7 @@ class Addproperty extends React.Component {
                 <div className="col-9">
                   <input
                     value={image}
+                    name="image"
                     onChange={this.handleChange}
                     type="file"
                     class="form-control-file"

@@ -14,7 +14,7 @@ json.properties do
     json.image_url property.image_url
 
     json.images do
-      json.array! @property.images do |image|
+      json.array! property.images do |image|
         json.image_url url_for(image)
       end
     end
