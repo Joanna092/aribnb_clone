@@ -31,6 +31,14 @@ export function jsonHeader(options = {}) {
   * Note: Never use for requests across (untrusted) domains.
   */
 
+ export function safeCredentialsForm(options = {}) {
+  return Object.assign(options, {
+    credentials: 'include',
+    mode: 'same-origin',
+    headers: Object.assign((options.headers || {}), authenticityHeader()),
+  });
+}
+
   export function safeCredentials(options = {}) {
     return Object.assign(options, {
       credentials: 'include',

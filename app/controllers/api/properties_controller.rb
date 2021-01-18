@@ -47,7 +47,7 @@ module Api
                 bedrooms: @property.bedrooms,
                 beds: @property.beds,
                 baths: @property.baths,
-                image: @propery.image_url
+                image: @property.image_url
               }
           }
         else
@@ -66,7 +66,7 @@ module Api
     private
 
     def properties_params
-      params.require(:property).permit(:title, :description, :city, :country, :price, :price_per_night, :max_guests, :bedrooms, :beds, :baths, :property_type, images: [])
+      params.require(:property).permit(:title, :description, :city, :country, :price, :price_per_night, :max_guests, :bedrooms, :beds, :baths, :property_type, :image_url, images: [])
     end
   end
 end

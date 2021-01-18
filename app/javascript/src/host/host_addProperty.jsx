@@ -40,8 +40,10 @@ class Addproperty extends React.Component {
     }
 
     let formData = new FormData();
-    for (let i = 0; i < this.state.images.length; i++) {
-      formData.append('property[images][]', this.state.images.files[i]);
+    const fileInputElement = document.getElementById('image-select');
+
+    for (let i = 0; i < fileInputElement.length; i++) {
+      formData.append('property[images][]', fileInputElement.files[i]);
     }
     // Set other params in the form data.
     formData.set('property[title]', this.state.title);
@@ -62,9 +64,7 @@ class Addproperty extends React.Component {
         method: "POST",
         body: formData,
       })
-    )
-   
-      .then(handleErrors)
+    ) .then(handleErrors)
       .then((data) => {
         console.log(data);
 
@@ -126,16 +126,17 @@ class Addproperty extends React.Component {
             <div className="form-group">
               <div className="row">
                 <div className="col-3">
-                  <label for="exampleFormControlFile1">Image</label>
+                  <label for="image-select">Image</label>
                 </div>
                 <div className="col-9">
                   <input
                     value={image}
                     name="image"
+                    ref={this.fileInputElement}
                     onChange={this.handleChange}
                     type="file"
                     class="form-control-file"
-                    id="exampleFormControlFile1"
+                    id="image-select"
                   />
                 </div>
               </div>
