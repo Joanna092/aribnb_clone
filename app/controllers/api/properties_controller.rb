@@ -63,6 +63,21 @@ module Api
       render 'api/properties/show', status: :ok
     end
 
+    def destroy
+      token = cookies.signed[:airbnb_session_token]
+      session = Session.find_by(token: token)
+
+      @property = Property.find_by(id: params[:id])
+
+      if !session
+        render json: { success: false }
+      elsif @property&.destroy
+        render json: { success: true }
+      else
+        render json: { success: false }
+      end
+    end
+
     private
 
     def properties_params

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Hostlayout from '@src/host/host_layout';
-import { handleErrors } from '../utils/fetchHelper';
+import { handleErrors, safeCredentials } from '../utils/fetchHelper';
 
 import '../../user/home.scss';
 
@@ -17,7 +17,7 @@ class Hostproperty extends React.Component {
       user_properties: [],
       username: " ",
     };
-   // this.deletePost = this.deletePost.bind(this);
+   this.deleteProperty = this.deleteProperty.bind(this);
   }
 
   componentDidMount() {
@@ -41,11 +41,10 @@ class Hostproperty extends React.Component {
       });
   }
 
-/*
-  deletePost(id) {
+  deleteProperty(id) {
     console.log("deleted");
     fetch(
-      `/api/tweets/${id}`,
+      `/api/properties/${id}`,
       safeCredentials({
         method: "DELETE",
       })
@@ -53,19 +52,19 @@ class Hostproperty extends React.Component {
       .then(handleErrors)
       .catch((error) => {
         this.setState({
-          error: "Could not delete tweet",
+          error: "Could not delete property",
         });
-        console.log("Could not delete tweet");
+        console.log("Could not delete property");
       })
       .then(() => {
-        fetch(`/api/users/${this.props.user_data.username}/tweets`)
+        fetch(`/api/users/Jimmy/properties`)
           .then(handleErrors)
           .then((data) => {
-            this.setState({ user_tweets: data.tweets });
+            this.setState({ user_properties: data.properties });
           });
       });
   }
-*/
+
   render () {
     const { user_properties, next_page, loading } = this.state;
     return (
@@ -85,6 +84,14 @@ class Hostproperty extends React.Component {
                     <p className="mb-0"><small>${property.price_per_night} USD/night</small></p>
                   </a>
                   <button>EDIT</button><button>DELETE</button>
+
+                  <button
+                      onClick={() => this.deleteProperty(property.id)}
+                      type="button"
+                      className="btn btn-danger delete_button"
+                    >
+                      Delete
+                    </button>
                 </div>
               )
             })}

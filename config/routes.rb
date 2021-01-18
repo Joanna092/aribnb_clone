@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :charges, only: [:create]
 
     delete '/logout' => 'sessions#destroy'
+    delete '/properties/:id' => 'properties#destroy'
     get '/logout' => 'sessions#destroy'
 
     get '/properties/:id/bookings' => 'bookings#get_property_bookings'
