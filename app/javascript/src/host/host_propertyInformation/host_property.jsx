@@ -18,6 +18,7 @@ class Hostproperty extends React.Component {
       username: " ",
     };
    this.deleteProperty = this.deleteProperty.bind(this);
+   this.editProperty = this.editProperty.bind(this);
   }
 
   componentDidMount() {
@@ -65,13 +66,16 @@ class Hostproperty extends React.Component {
       });
   }
 
+  editProperty() {
+    window.location = "/";
+  }
+
   render () {
     const { user_properties, next_page, loading } = this.state;
     return (
       <Hostlayout>
-       <p>Host properties page</p>
         <div className="container pt-4">
-          <h4 className="mb-1">Top-rated places to stay</h4>
+          <h4 className="mb-1">Host properties page</h4>
           <p className="text-secondary mb-3">Explore some of the best-reviewed stays in the world</p>
           <div className="row">
             {user_properties.map(property => {
@@ -83,12 +87,18 @@ class Hostproperty extends React.Component {
                     <h6 className="mb-0">{property.title}</h6>
                     <p className="mb-0"><small>${property.price_per_night} USD/night</small></p>
                   </a>
-                  <button>EDIT</button><button>DELETE</button>
+                  <button
+                      onClick={() => this.editProperty(property)}
+                      type="button"
+                      className="btn btn-warning"
+                    >
+                      Edit
+                    </button>
 
                   <button
                       onClick={() => this.deleteProperty(property.id)}
                       type="button"
-                      className="btn btn-danger delete_button"
+                      className="btn btn-danger"
                     >
                       Delete
                     </button>
