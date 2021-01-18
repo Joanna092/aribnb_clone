@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     get '/properties/:id/bookings' => 'bookings#get_property_bookings'
     get '/authenticated' => 'sessions#authenticated'
 
-    # display properties booked by user who is logged in
+    # display properties created by given host
     get '/users/:username/properties' => 'properties#index_by_user'
 
     # stripe webhook
