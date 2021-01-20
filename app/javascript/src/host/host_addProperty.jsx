@@ -54,6 +54,7 @@ class Addproperty extends React.Component {
     formData.set('property[description]', this.state.description);
     formData.set('property[price_per_night]', this.state.price_per_night);
     formData.set('property[max_guests]', this.state.max_guests);
+    formData.set('property[bedrooms]', this.state.bedrooms);
     formData.set('property[beds]', this.state.beds);
     formData.set('property[baths]', this.state.baths);
     formData.set('property[image_url]', this.state.image);

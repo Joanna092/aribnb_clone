@@ -3,7 +3,8 @@
 class Property < ApplicationRecord
   belongs_to :user
   has_many :bookings
-  has_many_attached :images # added to be able to add images
+  #has_many_attached :images # added to be able to add images
+  has_one_attached :image  #added to add one image
 
   validates :title, presence: true, length: { maximum: 70 }
   validates :description, presence: true, length: { maximum: 2000 }

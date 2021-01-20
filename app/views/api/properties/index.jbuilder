@@ -13,10 +13,18 @@ json.properties do
     json.price_per_night property.price_per_night
     json.image_url property.image_url
 
-    json.images do
-      json.array! property.images do |image|
-        json.image_url url_for(image)
-      end
+    if property.image.attached?
+      json.image url_for(property.image)
+    else
+      json.image nil
     end
   end
 end
+
+ #   json.images do
+ #     json.array! property.images do |image|
+ #       json.image_url url_for(image)
+ #     end
+ #   end
+  
+

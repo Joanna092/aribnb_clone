@@ -32,7 +32,7 @@ module Api
         user = session.user
         @property = user.properties.new(properties_params)
 
-        if @property.save
+        if @property.save!
           render json: {
             property:
               {
@@ -81,7 +81,7 @@ module Api
     private
 
     def properties_params
-      params.require(:property).permit(:title, :description, :city, :country, :price, :price_per_night, :max_guests, :bedrooms, :beds, :baths, :property_type, :image_url, images: [])
+      params.require(:property).permit(:title, :description, :city, :country, :price, :price_per_night, :max_guests, :bedrooms, :beds, :baths, :property_type, :image_url, :image, images: [])
     end
   end
 end
