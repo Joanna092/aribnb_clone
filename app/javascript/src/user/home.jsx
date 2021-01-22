@@ -15,8 +15,10 @@ class Home extends React.Component {
 
   componentDidMount() {
     fetch('/api/properties?page=1')
+  //fetch(`/api/users/Jimmy/properties`)
       .then(handleErrors)
       .then(data => {
+        console.log(data)
         this.setState({
           properties: data.properties,
           total_pages: data.total_pages,
@@ -31,7 +33,7 @@ class Home extends React.Component {
       return;
     }
     this.setState({ loading: true });
-    fetch(`/api/properties?page=${this.state.next_page}`)
+   fetch(`/api/properties?page=${this.state.next_page}`)
       .then(handleErrors)
       .then(data => {
         this.setState({

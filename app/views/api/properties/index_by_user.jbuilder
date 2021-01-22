@@ -9,12 +9,12 @@ json.properties do
     json.country property.country
     json.property_type property.property_type
     json.price_per_night property.price_per_night
-    json.image_url property.image_url
 
-  #  json.images do
-  #    json.array! property.images do |image|
-   #     json.image_url url_for(image)
-   #   end
-  #  end
+    if property.images.any?
+      json.image_url url_for(property.images[0])
+    else
+      # json.image nil
+      json.image_url property.image_url
+    end
   end
 end

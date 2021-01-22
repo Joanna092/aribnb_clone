@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import Hostlayout from "@src/host/host_layout";
 import { handleErrors, safeCredentialsForm } from './utils/fetchHelper';
 
+
 class Addproperty extends React.Component {
 
   constructor(props) {
@@ -22,11 +23,13 @@ class Addproperty extends React.Component {
       bedrooms: "",
       beds: "",
       baths: "",
-      image: "",
       images: []
     };
+
     this.submit= this.submit.bind(this);
+
   }
+
 
   handleChange = (e) => {
     this.setState({
@@ -41,10 +44,12 @@ class Addproperty extends React.Component {
 
     let formData = new FormData();
     const fileInputElement = document.getElementById('image-select');
+    console.log(fileInputElement.files);
 
-    for (let i = 0; i < fileInputElement.length; i++) {
+    for (let i = 0; i < fileInputElement.files.length; i++) {
       formData.append('property[images][]', fileInputElement.files[i]);
     }
+
     // Set other params in the form data.
     formData.set('property[title]', this.state.title);
     formData.set('property[description]', this.state.description);
@@ -57,7 +62,6 @@ class Addproperty extends React.Component {
     formData.set('property[bedrooms]', this.state.bedrooms);
     formData.set('property[beds]', this.state.beds);
     formData.set('property[baths]', this.state.baths);
-    formData.set('property[image_url]', this.state.image);
 
     fetch(
       '/api/properties',
@@ -68,7 +72,6 @@ class Addproperty extends React.Component {
     ) .then(handleErrors)
       .then((data) => {
         console.log(data);
-
         if (data.success !== false) {
           this.setState({
             error: false,
@@ -101,6 +104,7 @@ class Addproperty extends React.Component {
       image,
       user,    
     } = this.state;
+
     return (
       <Hostlayout>
         <div className="container">
@@ -110,6 +114,7 @@ class Addproperty extends React.Component {
                 <div className="col-3">
                   <label for="exampleFormControlInput1">Property name</label>
                 </div>
+
                 <div className="col-9">
                   <input
                     type="text"
@@ -124,11 +129,13 @@ class Addproperty extends React.Component {
                 </div>
               </div>
             </div>
+
             <div className="form-group">
               <div className="row">
                 <div className="col-3">
                   <label for="image-select">Image</label>
                 </div>
+
                 <div className="col-9">
                   <input
                     value={image}
@@ -138,6 +145,7 @@ class Addproperty extends React.Component {
                     type="file"
                     class="form-control-file"
                     id="image-select"
+                    multiple
                   />
                 </div>
               </div>
@@ -147,6 +155,7 @@ class Addproperty extends React.Component {
                 <div className="col-3">
                   <label for="exampleFormControlTextarea1">Description</label>
                 </div>
+
                 <div className="col-9">
                   <textarea
                     className="form-control"
@@ -160,11 +169,13 @@ class Addproperty extends React.Component {
                 </div>
               </div>
             </div>
+
             <div className="form-group">
               <div className="row">
                 <div className="col-3">
                   <label for="exampleFormControlInput1">Country</label>
                 </div>
+
                 <div className="col-9">
                   <input
                     type="text"
@@ -179,11 +190,13 @@ class Addproperty extends React.Component {
                 </div>
               </div>
             </div>
+
             <div className="form-group">
               <div className="row">
                 <div className="col-3">
                   <label for="exampleFormControlInput1">City</label>
                 </div>
+
                 <div className="col-9">
                   <input
                     type="text"
@@ -203,6 +216,7 @@ class Addproperty extends React.Component {
                 <div className="col-3">
                   <label for="exampleFormControlSelect1">Type</label>
                 </div>
+
                 <div className="col-9">
                   <input
                     type="text"
@@ -217,12 +231,14 @@ class Addproperty extends React.Component {
                 </div>
               </div>
             </div>
+
             <div className="form-group">
               <div className="row">
                 <div className="col-3">
                   <label for="exampleFormControlSelect1">Price per night</label>
                 </div>
                 <div className="col-9">
+
                   <input
                     type="number"
                     class="form-control"
@@ -236,11 +252,13 @@ class Addproperty extends React.Component {
                 </div>
               </div>
             </div>
+
             <div className="form-group">
               <div className="row">
                 <div className="col-3">
                   <label for="exampleFormControlSelect1">Max guests</label>
                 </div>
+
                 <div className="col-9">
                   <input
                     type="number"
@@ -255,6 +273,7 @@ class Addproperty extends React.Component {
                 </div>
               </div>
             </div>
+
             <div className="form-group">
               <div className="row">
                 <div className="col-3">
@@ -274,11 +293,13 @@ class Addproperty extends React.Component {
                 </div>
               </div>
             </div>
+
             <div className="form-group">
               <div className="row">
                 <div className="col-3">
                   <label for="exampleFormControlSelect1">Beds</label>
                 </div>
+
                 <div className="col-9">
                   <input
                     type="number"
@@ -293,11 +314,13 @@ class Addproperty extends React.Component {
                 </div>
               </div>
             </div>
+
             <div className="form-group">
               <div className="row">
                 <div className="col-3">
                   <label for="exampleFormControlSelect1">Baths</label>
                 </div>
+
                 <div className="col-9">
                   <input
                     type="number"
@@ -328,3 +351,4 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(document.createElement("div"))
   );
 });
+
