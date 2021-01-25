@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Hostlayout from '@src/host/host_layout';
 import { handleErrors, safeCredentials } from '../utils/fetchHelper';
-
 import '../../user/home.scss';
 
 class Hostproperty extends React.Component {
