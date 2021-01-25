@@ -46,6 +46,13 @@ class StaticPagesController < ApplicationController
     render 'add_property'
   end
 
+  def edit_property
+    @user_data = authorize_host
+    return unless @user_data
+
+    render 'edit_property'
+  end
+
   def property_success
     @user_data = authorize_host
     return unless @user_data

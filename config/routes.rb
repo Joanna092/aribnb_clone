@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   root to: 'static_pages#home'
 
   get '/property/:id' => 'static_pages#property'
+
+  get '/hosting/edit/property/:id' => 'static_pages#edit_property' #edit chosen property of a host 
+
   get '/login' => 'static_pages#login'
 
   get '/booking/:id/success' => 'static_pages#paymentSuccess'

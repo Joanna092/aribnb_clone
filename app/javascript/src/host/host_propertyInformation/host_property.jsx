@@ -31,7 +31,7 @@ class Hostproperty extends React.Component {
         });
       })
       .then(() => {
-        fetch(`/api/users/${this.state.username}/properties`) //${this.state.username}
+        fetch(`/api/users/${this.state.username}/properties`) 
           .then(handleErrors)
           .then((data) => {
             console.log(data);
@@ -66,8 +66,8 @@ class Hostproperty extends React.Component {
       });
   }
 
-  editProperty() {
-    window.location = "/";
+  editProperty(id) {
+    window.location = `/hosting/edit/property/${id}`;
   }
 
   render () {
@@ -88,7 +88,7 @@ class Hostproperty extends React.Component {
                     <p className="mb-0"><small>${property.price_per_night} USD/night</small></p>
                   </a>
                   <button
-                      onClick={() => this.editProperty(property)}
+                      onClick={() => this.editProperty(property.id)}
                       type="button"
                       className="btn btn-warning"
                     >
