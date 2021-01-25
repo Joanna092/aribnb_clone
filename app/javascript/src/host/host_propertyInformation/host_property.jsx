@@ -31,7 +31,7 @@ class Hostproperty extends React.Component {
         });
       })
       .then(() => {
-        fetch(`/api/users/Jimmy/properties`) //${this.state.username}
+        fetch(`/api/users/${this.state.username}/properties`) //${this.state.username}
           .then(handleErrors)
           .then((data) => {
             console.log(data);

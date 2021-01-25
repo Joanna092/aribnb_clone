@@ -17,7 +17,7 @@ json.property do
   if @property.images.any?
     json.image_url url_for(@property.images[0])
   else
-    json.image_url property.image_url
+    json.image_url @property.image_url
   end
 end
 
