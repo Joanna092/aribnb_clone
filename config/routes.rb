@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get '/property/:id' => 'static_pages#property'
 
-  get '/hosting/edit/property/:id' => 'static_pages#edit_property' #edit chosen property of a host 
+  get '/hosting/edit/property/:id' => 'static_pages#edit_property' # display edit chosen property of a host
 
   get '/login' => 'static_pages#login'
 
@@ -20,13 +20,16 @@ Rails.application.routes.draw do
     # Add routes below this line
     resources :users, only: [:create]
     resources :sessions, only: %i[create destroy]
-    resources :properties, only: %i[index show create]
+    resources :properties, only: %i[index show create update]
     resources :properties, only: [:create]
     resources :bookings, only: [:create]
     resources :charges, only: [:create]
 
     delete '/logout' => 'sessions#destroy'
     delete '/properties/:id' => 'properties#destroy'
+    # edit property created by given host
+    put '/properties/:id' => 'properties#edit'
+
     get '/logout' => 'sessions#destroy'
 
     get '/properties/:id/bookings' => 'bookings#get_property_bookings'

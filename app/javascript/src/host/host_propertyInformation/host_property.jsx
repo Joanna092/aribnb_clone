@@ -57,7 +57,7 @@ class Hostproperty extends React.Component {
         console.log("Could not delete property");
       })
       .then(() => {
-        fetch(`/api/users/Jimmy/properties`)
+        fetch(`/api/users/${this.state.username}/properties`)
           .then(handleErrors)
           .then((data) => {
             this.setState({ user_properties: data.properties });
