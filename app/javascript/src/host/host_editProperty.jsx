@@ -56,6 +56,7 @@ class Editproperty extends React.Component {
   };
 
   submit = (e) => {
+    const property_id = window.location.pathname.replace('/hosting/edit/property/', '');
     if (e) {
       e.preventDefault();
     }
@@ -83,7 +84,7 @@ class Editproperty extends React.Component {
 
   //  const property_id = window.location.pathname.replace('/hosting/edit/property/', '');
     fetch(
-     '/api/properties/19',
+     `/api/properties/${property_id}`,
       safeCredentialsForm ({
         method: "PUT",
         body: formData,
@@ -116,13 +117,8 @@ class Editproperty extends React.Component {
     };
 
     const {
-      description, 
-    } = this.state;
-
-    const {
-      id,
       title,
-     // description,
+      description,
       city,
       country,
       property_type,
@@ -132,6 +128,21 @@ class Editproperty extends React.Component {
       beds,
       baths,
       image_url,
+    } = this.state;
+
+    const {
+      id,
+  /* title,
+      description,
+      city,
+      country,
+      property_type,
+      price_per_night,
+      max_guests,
+      bedrooms,
+      beds,
+      baths,
+      image_url, */
      // user,
     } = property
 
