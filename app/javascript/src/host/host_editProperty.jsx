@@ -196,7 +196,7 @@ class Editproperty extends React.Component {
                     type="text"
                     class="form-control"
                     id="exampleFormControlInput1"
-                    placeholder="property"
+                    placeholder={property.title}
                     name="title"
                     value={title}
                     onChange={this.handleChange}
@@ -237,6 +237,7 @@ class Editproperty extends React.Component {
                     id="exampleFormControlTextarea1"
                     rows="3"
                     name="description"
+                    placeholder={property.description}
                     value={description}
                     onChange={this.handleChange}
                   ></textarea>
@@ -255,7 +256,7 @@ class Editproperty extends React.Component {
                     type="text"
                     class="form-control"
                     id="exampleFormControlInput1"
-                    placeholder="country"
+                    placeholder={property.country}
                     name="country"
                     value={country}
                     onChange={this.handleChange}
@@ -275,7 +276,7 @@ class Editproperty extends React.Component {
                     type="text"
                     class="form-control"
                     id="exampleFormControlInput1"
-                    placeholder="city"
+                    placeholder={property.city}
                     name="city"
                     value={city}
                     onChange={this.handleChange}
@@ -294,7 +295,7 @@ class Editproperty extends React.Component {
                     type="text"
                     class="form-control"
                     id="exampleFormControlInput1"
-                    placeholder="type"
+                    placeholder={property.property_type}
                     name="property_type"
                     value={property_type}
                     onChange={this.handleChange}
@@ -314,7 +315,7 @@ class Editproperty extends React.Component {
                     type="number"
                     class="form-control"
                     id="exampleFormControlInput1"
-                    placeholder="price"
+                    placeholder={property.price_per_night}
                     name="price_per_night"
                     value={price_per_night}
                     onChange={this.handleChange}
@@ -334,7 +335,7 @@ class Editproperty extends React.Component {
                     type="number"
                     class="form-control"
                     id="exampleFormControlInput1"
-                    placeholder="guests"
+                    placeholder={property.max_guests}
                     name="max_guests"
                     value={max_guests}
                     onChange={this.handleChange}
@@ -353,7 +354,7 @@ class Editproperty extends React.Component {
                     type="number"
                     class="form-control"
                     id="exampleFormControlInput1"
-                    placeholder="bedrooms"
+                    placeholder={property.bedrooms}
                     name="bedrooms"
                     value={bedrooms}
                     onChange={this.handleChange}
@@ -373,7 +374,7 @@ class Editproperty extends React.Component {
                     type="number"
                     class="form-control"
                     id="exampleFormControlInput1"
-                    placeholder="beds"
+                    placeholder={property.beds}
                     name="beds"
                     value={beds}
                     onChange={this.handleChange}
@@ -393,7 +394,7 @@ class Editproperty extends React.Component {
                     type="number"
                     class="form-control"
                     id="exampleFormControlInput1"
-                    placeholder="baths"
+                    placeholder={property.baths}
                     name="baths"
                     value={baths}
                     onChange={this.handleChange}
