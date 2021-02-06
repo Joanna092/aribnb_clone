@@ -157,23 +157,23 @@ class Editproperty extends React.Component {
           <div className="row">
             <div className="info col-12 col-lg-7">
               <div className="mb-3">
-                <h3 className="mb-0">{title}</h3>            
-                <img src={image_url} alt="property image" />   
-                <p className="text-uppercase mb-0 text-secondary"><small>{country}, {city}</small></p>
+                <h3 className="mb-0">{property.title}</h3>            
+                <img className="img-fluid" src={property.image_url} alt="property image" />   
+                <p className="text-uppercase mb-0 text-secondary"><small>{property.country}, {property.city}</small></p>
                 <p className="mb-0"><small>Hosted by <b>{username}</b></small></p>
               </div>
               <div>
-                <p className="mb-0 text-capitalize"><b>{property_type}</b></p>
-                <p>Price per night: {price_per_night}</p>
+                <p className="mb-0 text-capitalize"><b>{property.property_type}</b></p>
+                <p>Price per night: {property.price_per_night}</p>
                 <p>
-                  <span className="mr-3">{max_guests} guests</span>
-                  <span className="mr-3">{bedrooms} bedroom</span>
-                  <span className="mr-3">{beds} bed</span>
-                  <span className="mr-3">{baths} bath</span>
+                  <span className="mr-3">{property.max_guests} guests</span>
+                  <span className="mr-3">{property.bedrooms} bedroom</span>
+                  <span className="mr-3">{property.beds} bed</span>
+                  <span className="mr-3">{property.baths} bath</span>
                 </p>
               </div>
               <hr />
-              <p>{description}</p>
+              <p>{property.description}</p>
             </div>
           </div>
         </div>
