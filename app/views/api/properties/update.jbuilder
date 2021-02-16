@@ -18,7 +18,7 @@ json.property do
   # json.image_url property.image_url
 
   if @property.images.any?
-    json.image_url url_for(@property.images[0])
+    json.image_url url_for(@property.images.slice(-1))
   else
     json.image_url @property.image_url
   end

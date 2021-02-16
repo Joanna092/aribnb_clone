@@ -45,6 +45,7 @@ class Editproperty extends React.Component {
           user: data.user,
           loading: false,
         })
+        console.log(this.state.property)
       })
   }
 
@@ -52,7 +53,6 @@ class Editproperty extends React.Component {
     this.setState({
       [e.target.name]: e.target.value,
     });
-    console.log("handle change:" + this.state.description)
   };
 
   submit = (e) => {
@@ -70,17 +70,17 @@ class Editproperty extends React.Component {
     }
 
     // Set other params in the form data.
-    formData.set('property[title]', this.state.title);
-    formData.set('property[description]', this.state.description);
-    formData.set('property[country]', this.state.country);
-    formData.set('property[city]', this.state.city);
-    formData.set('property[property_type]', this.state.property_type);
-    formData.set('property[description]', this.state.description);
-    formData.set('property[price_per_night]', this.state.price_per_night);
-    formData.set('property[max_guests]', this.state.max_guests);
-    formData.set('property[bedrooms]', this.state.bedrooms);
-    formData.set('property[beds]', this.state.beds);
-    formData.set('property[baths]', this.state.baths);
+    formData.set('property[title]', this.state.title ? this.state.title : this.state.property.title);
+    formData.set('property[description]', this.state.description ? this.state.description : this.state.property.description );
+    formData.set('property[country]', this.state.country ? this.state.country : this.state.property.country );
+    formData.set('property[city]', this.state.city ? this.state.city : this.state.property.city);
+    formData.set('property[property_type]', this.state.property_type ? this.state.property_type : this.state.property.property_type);
+    formData.set('property[description]', this.state.description ? this.state.description : this.state.property.description);
+    formData.set('property[price_per_night]', this.state.price_per_night ? this.state.price_per_night : this.state.property.price_per_night);
+    formData.set('property[max_guests]', this.state.max_guests ? this.state.max_guests : this.state.property.max_guests);
+    formData.set('property[bedrooms]', this.state.bedrooms ? this.state.bedrooms : this.state.property.bedrooms);
+    formData.set('property[beds]', this.state.beds ? this.state.beds : this.state.property.beds);
+    formData.set('property[baths]', this.state.baths ? this.state.baths : this.state.property.baths);
 
   //  const property_id = window.location.pathname.replace('/hosting/edit/property/', '');
     fetch(
@@ -92,7 +92,6 @@ class Editproperty extends React.Component {
     ) .then(handleErrors)
       .then((data) => {
         console.log(data);
-        console.log("submit:" + this.state.description)
         if (data.success !== false) {
           this.setState({
             error: false,
