@@ -191,7 +191,8 @@ class Editproperty extends React.Component {
               <div className="border" key={booking.id}>
                    <p>From: {booking.start_date} To: {booking.end_date}</p>
                    <p>By: {booking.user}</p>
-                   <p>Paid: ???</p>
+                   <p>Contact: {booking.email}</p>
+                   {booking.paid ? <p>PAID</p> : <p>not paid yet</p>}
                    </div>
               )
                    })}
