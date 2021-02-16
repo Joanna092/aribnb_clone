@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources :sessions, only: %i[create destroy]
     resources :properties, only: %i[index show create update]
     resources :properties, only: [:create]
-    resources :bookings, only: [:create]
+    resources :bookings, only: %i[index create]
     resources :charges, only: [:create]
 
     delete '/logout' => 'sessions#destroy'

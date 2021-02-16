@@ -41,7 +41,7 @@ class Userpage extends React.Component {
       <Layout>
         <p>User Page</p>
         <button
-          className="btn btn-danger"
+          className="btn btn-danger text-right"
           onClick={this.handleClick}
         >
           Log Out

@@ -38,7 +38,7 @@ class Hostproperty extends React.Component {
               user_properties: data.properties,
             });
           });
-      });
+      })
   }
 
   deleteProperty(id) {
@@ -70,7 +70,7 @@ class Hostproperty extends React.Component {
   }
 
   render () {
-    const { user_properties, next_page, loading } = this.state;
+    const { user_properties, bookings, next_page, loading } = this.state;
     return (
       <Hostlayout>
         <div className="container pt-4">
@@ -91,7 +91,7 @@ class Hostproperty extends React.Component {
                       type="button"
                       className="btn btn-warning"
                     >
-                      Edit
+                      Edit and see property infromation
                     </button>
 
                   <button

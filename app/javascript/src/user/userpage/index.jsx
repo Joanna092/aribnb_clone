@@ -7,21 +7,34 @@ class Userpage extends React.Component {
   constructor() {
     super();
     this.state = {
-      host_properties: [], //this should be user properties 
+      properties: [],
+      loading: true,
+      user_properties: [],
+      username: " ",
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
-    fetch(`/api/users/Joanna092/properties`)
+    fetch("/api/authenticated")
       .then(handleErrors)
       .then((data) => {
-        console.log(data)
+        console.log(data);
         this.setState({
-          user_properties: data.properties, //I need to get normal user properties, not host's
-       });      
-  }) 
-}
+          username: data.username,
+        });
+      })
+      .then(() => {
+        fetch(`/api/users/${this.state.username}/properties`) 
+          .then(handleErrors)
+          .then((data) => {
+            console.log(data);
+            this.setState({
+              user_properties: data.properties,
+            });
+          });
+      });
+  }
 
   handleClick() {
     fetch("/api/logout")
@@ -33,16 +46,16 @@ class Userpage extends React.Component {
   }
 
   render() {
+    const { user_properties } = this.state;
     return (
       <Layout>
         <div className="container">
         <h3 className="text-center">Your profile</h3>
           <div className="row">
-            <div className="col">
-              <p>Username: </p>
-              <p>Email:</p>
+            <div className="col-10">
+              <p>Username: {this.state.username}</p>
             </div>
-            <div className="col">
+            <div className="col-2">
               <button className="btn btn-danger" onClick={this.handleClick}>
                 Log Out
               </button>
@@ -51,6 +64,37 @@ class Userpage extends React.Component {
         </div>
 
         <h3 className="text-center">Your bookings</h3>
+        <div className="container pt-4">
+          <div className="row">
+            {user_properties.map(property => {
+              return (
+                <div key={property.id} className="col-6 col-lg-4 mb-4 property">
+                  <a href={`/property/${property.id}`} className="text-body text-decoration-none">
+                    <div className="property-image mb-1 rounded" style={{ backgroundImage: `url(${property.image_url})` }} />
+                    <p className="text-uppercase mb-0 text-secondary"><small><b>{property.city}</b></small></p>
+                    <h6 className="mb-0">{property.title}</h6>
+                    <p className="mb-0"><small>${property.price_per_night} USD/night</small></p>
+                  </a>
+                  <button
+                      onClick={() => this.editProperty(property.id)}
+                      type="button"
+                      className="btn btn-warning"
+                    >
+                      Edit
+                    </button>
+
+                  <button
+                      onClick={() => this.deleteProperty(property.id)}
+                      type="button"
+                      className="btn btn-danger"
+                    >
+                      Delete
+                    </button>
+                </div>
+              )
+            })}
+          </div>
+        </div>
       </Layout>
     );
   }

@@ -12,7 +12,7 @@ class Editproperty extends React.Component {
     property: {},
     user: {},
     loading: true,
-
+    bookings: [],
     username: "Joanna092",
     error: "",
     successMessage: "",
@@ -45,8 +45,16 @@ class Editproperty extends React.Component {
           user: data.user,
           loading: false,
         })
-        console.log(this.state.property)
-      })
+      }).then(() => {
+        fetch(`/api/properties/${property_id}/bookings`) 
+          .then(handleErrors)
+          .then((data) => {
+            console.log(data);
+            this.setState({
+              bookings: data.bookings,
+            });
+          });
+      });
   }
 
   handleChange = (e) => {
@@ -110,7 +118,7 @@ class Editproperty extends React.Component {
   
 
   render () {
-    const { user, property, loading, image } = this.state;
+    const { user, property, loading, image, bookings } = this.state;
     if (loading) {
       return <p>loading...</p>;
     };
@@ -175,6 +183,17 @@ class Editproperty extends React.Component {
               <p>{property.description}</p>
             </div>
           </div>
+          {bookings.map(booking => {
+              return (
+              <div key={booking.id}>
+                   <p>BOOKED</p> 
+                   <p>Booking information:</p>
+                   <p>From: {booking.start_date} To: {booking.end_date}</p>
+                   <p>By: ???</p>
+                   <p>Paid: ???</p>
+                   </div>
+              )
+                   })}
         </div>
 
 
