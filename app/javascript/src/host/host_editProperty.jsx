@@ -183,13 +183,14 @@ class Editproperty extends React.Component {
               <p>{property.description}</p>
             </div>
           </div>
+         
+          {bookings.length != 0 ? <span><p>BOOKED</p><p>Booking information:</p></span> : <p>FREE</p>}
+
           {bookings.map(booking => {
               return (
-              <div key={booking.id}>
-                   <p>BOOKED</p> 
-                   <p>Booking information:</p>
+              <div className="border" key={booking.id}>
                    <p>From: {booking.start_date} To: {booking.end_date}</p>
-                   <p>By: ???</p>
+                   <p>By: {booking.user}</p>
                    <p>Paid: ???</p>
                    </div>
               )

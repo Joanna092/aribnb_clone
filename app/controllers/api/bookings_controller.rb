@@ -29,7 +29,7 @@ module Api
     private
 
     def booking_params
-      params.require(:booking).permit(:property_id, :start_date, :end_date)
+      params.require(:booking).permit(:property_id, :start_date, :end_date, :user) #added user
     end
   end
 end
