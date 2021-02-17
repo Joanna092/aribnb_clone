@@ -9,7 +9,7 @@ class Userpage extends React.Component {
     this.state = {
       properties: [],
       loading: true,
-      user_properties: [],
+      user_bookings: [],
       username: " ",
     };
     this.handleClick = this.handleClick.bind(this);
@@ -25,12 +25,12 @@ class Userpage extends React.Component {
         });
       })
       .then(() => {
-        fetch(`/api/users/${this.state.username}/properties`) 
+        fetch(`/api/users/${this.state.username}/bookings`) 
           .then(handleErrors)
           .then((data) => {
             console.log(data);
             this.setState({
-              user_properties: data.properties,
+              user_bookings: data.bookings,
             });
           });
       });
@@ -46,7 +46,7 @@ class Userpage extends React.Component {
   }
 
   render() {
-    const { user_properties } = this.state;
+    const { user_bookings } = this.state;
     return (
       <Layout>
         <div className="container">
@@ -66,29 +66,23 @@ class Userpage extends React.Component {
         <h3 className="text-center">Your bookings</h3>
         <div className="container pt-4">
           <div className="row">
-            {user_properties.map(property => {
+            {user_bookings.map(booking => {
               return (
-                <div key={property.id} className="col-6 col-lg-4 mb-4 property">
-                  <a href={`/property/${property.id}`} className="text-body text-decoration-none">
-                    <div className="property-image mb-1 rounded" style={{ backgroundImage: `url(${property.image_url})` }} />
-                    <p className="text-uppercase mb-0 text-secondary"><small><b>{property.city}</b></small></p>
-                    <h6 className="mb-0">{property.title}</h6>
-                    <p className="mb-0"><small>${property.price_per_night} USD/night</small></p>
-                  </a>
-                  <button
-                      onClick={() => this.editProperty(property.id)}
-                      type="button"
-                      className="btn btn-warning"
-                    >
-                      Edit
-                    </button>
+                <div key={booking.id} className="col-6 col-lg-4 mb-4 property">
+                  <h6 className="mb-0">{booking.property.title}</h6>
+                  <b><a href={`/property/${booking.property.id}`} className="text-body text-decoration-none">See your property</a></b>
+                {/* <div className="property-image mb-1 rounded" style={{ backgroundImage: `url(${booking.property.image_url})` }} /> */}
+                    <p className="text-uppercase mb-0 text-secondary">{booking.start_date}</p>
+                    <p className="text-uppercase mb-0 text-secondary">{booking.end_date}</p>
+                    {booking.paid ? <p className="mb-0">PAID</p> : <span><p>not paid yet</p><button>Finish payment process</button></span>}
+                  
 
                   <button
-                      onClick={() => this.deleteProperty(property.id)}
+                      onClick={() => this.deleteBooking(booking.id)}
                       type="button"
                       className="btn btn-danger"
                     >
-                      Delete
+                      Delete your booking
                     </button>
                 </div>
               )
