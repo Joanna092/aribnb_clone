@@ -45,6 +45,30 @@ class Userpage extends React.Component {
       });
   }
 
+  deleteBooking(id) {
+    console.log(`deleted booking with id: ${id}`);
+    fetch(
+      `/api/users/${this.state.username}/bookings/${id}`,   
+      safeCredentials({
+        method: "DELETE",
+      })
+    )
+      .then(handleErrors)
+      .catch((error) => {
+        this.setState({
+          error: "Could not delete booking",
+        });
+        console.log("Could not delete bookings");
+      })
+      .then(() => {
+        fetch(`/api/users/${this.state.username}/bookings`)
+          .then(handleErrors)
+          .then((data) => {
+            this.setState({ user_bookings: data.bookings });
+          });
+      });
+  }
+
   render() {
     const { user_bookings } = this.state;
     return (

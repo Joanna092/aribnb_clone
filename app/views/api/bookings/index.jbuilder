@@ -15,4 +15,3 @@ json.bookings do
     end
   end
 end
-

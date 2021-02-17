@@ -67,28 +67,28 @@ module Api
 
         if @property
 
-         # @property.update_attributes(properties_params)
-         @property.update!(properties_params)
+          # @property.update_attributes(properties_params)
+          @property.update!(properties_params)
 
         #  render 'api/properties/update', status: :ok
 
-     #               render json: {
-     #                property:
-     #                  {
-     #                    username: user.username,
-     #                    title: @property.title,
-     #                    description: @property.description,
-     #                    country: @property.country,
-     #                    city: @property.city,
-     #                    property_type: @property.property_type,
-     #                    price_per_night: @property.price_per_night,
-     #                    max_guests: @property.max_guests,
-     #                    bedrooms: @property.bedrooms,
-     #                    beds: @property.beds,
-     #                    baths: @property.baths,
-     #                    images: @property.images
-     #                  }
-     #              }
+        #               render json: {
+        #                property:
+        #                  {
+        #                    username: user.username,
+        #                    title: @property.title,
+        #                    description: @property.description,
+        #                    country: @property.country,
+        #                    city: @property.city,
+        #                    property_type: @property.property_type,
+        #                    price_per_night: @property.price_per_night,
+        #                    max_guests: @property.max_guests,
+        #                    bedrooms: @property.bedrooms,
+        #                    beds: @property.beds,
+        #                    baths: @property.baths,
+        #                    images: @property.images
+        #                  }
+        #              }
 
         else
           render json: { success: false }
