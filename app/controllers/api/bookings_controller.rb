@@ -18,6 +18,20 @@ module Api
       end
     end
 
+    def index_by_user
+      @bookings = Booking.order(created_at: :desc).page(params[:page]).per(6)
+      return render json: { error: 'not_found' }, status: :not_found unless @bookings
+
+      user = User.find_by(username: params[:username])
+
+      if user
+        @bookings = user.bookings.reverse
+        render 'api/bookings/index', status: :ok
+      else
+        render json: { bookings: [] }
+      end
+    end
+
     def get_property_bookings
       property = Property.find_by(id: params[:id])
       return render json: { error: 'cannot find property' }, status: :not_found unless property

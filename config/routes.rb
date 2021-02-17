@@ -38,6 +38,9 @@ Rails.application.routes.draw do
     # display properties created by given host
     get '/users/:username/properties' => 'properties#index_by_user'
 
+    #display bookings booked by given user 
+    get '/users/:username/bookings' => 'bookings#index_by_user'
+
     # stripe webhook
     post '/charges/mark_complete' => 'charges#mark_complete'
   end
