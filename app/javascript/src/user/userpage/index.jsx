@@ -3,6 +3,10 @@ import ReactDOM from "react-dom";
 import Layout from "@src/user/layout";
 import { safeCredentials, handleErrors } from "../utils/fetchHelper";
 
+import 'react-dates/initialize';
+import { DateRangePicker } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
+
 class Userpage extends React.Component {
   constructor() {
     super();
@@ -11,6 +15,7 @@ class Userpage extends React.Component {
       loading: true,
       user_bookings: [],
       username: " ",
+
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -69,6 +74,58 @@ class Userpage extends React.Component {
       });
   }
 
+
+  submitBooking = (id, startDate, endDate) => {
+    //if (e) { e.preventDefault(); }
+    console.log(startDate, endDate);
+
+    fetch(`/api/bookings`, safeCredentials({
+      method: 'POST',
+        body: JSON.stringify({
+          booking: {
+            property_id: id,
+            start_date: startDate,
+            end_date: endDate,
+          }
+        })
+    }))
+      .then(handleErrors)
+      .then(response => {
+        return this.initiateStripeCheckout(response.booking.id)
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
+
+  initiateStripeCheckout = (id) => {
+    return fetch(`/api/charges?booking_id=${id}&cancel_url=${window.location.pathname}`, safeCredentials({
+      method: 'POST',
+    }))
+      .then(handleErrors)
+      .then(response => {
+
+        const stripe = Stripe(process.env.STRIPE_PUBLISHABLE_KEY);
+      
+       
+        stripe.redirectToCheckout({
+          // Make the id field from the Checkout Session creation API response
+          // available to this file, so you can provide it as parameter here
+          // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
+
+           sessionId: response.charge.checkout_session_id,
+        }).then((result) => {
+          // If `redirectToCheckout` fails due to a browser or network
+          // error, display the localized error message to your customer
+          // using `result.error.message`.
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
+
+
   render() {
     const { user_bookings } = this.state;
     return (
@@ -98,7 +155,11 @@ class Userpage extends React.Component {
                 {/* <div className="property-image mb-1 rounded" style={{ backgroundImage: `url(${booking.property.image_url})` }} /> */}
                     <p className="text-uppercase mb-0 text-secondary">{booking.start_date}</p>
                     <p className="text-uppercase mb-0 text-secondary">{booking.end_date}</p>
-                    {booking.paid ? <p className="mb-0">PAID</p> : <span><p>not paid yet</p><button>Finish payment process</button></span>}
+                    {
+                    booking.paid ? <p className="mb-0">PAID</p> : 
+                    <button onClick={() => this.submitBooking(booking.id, booking.start_date, booking.end_date)}
+                    >Finish payment process</button>
+                    }
                   
 
                   <button
