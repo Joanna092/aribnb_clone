@@ -34,7 +34,6 @@ class Editproperty extends React.Component {
 
 
   componentDidMount() {
-    console.log(process.env.STRIPE_PUBLISHABLE_KEY)
     const property_id = window.location.pathname.replace('/hosting/edit/property/', '');
     fetch(`/api/properties/${property_id}`) 
       .then(handleErrors)
