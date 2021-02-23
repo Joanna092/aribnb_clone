@@ -26,16 +26,6 @@ class Userpage extends React.Component {
   }
   */
 
-  handleClick() {
-    fetch("/api/logout")
-      .then(handleErrors)
-      .then(function (data) {
-        console.log(data);
-        window.location = "/";
-      });
-  }
-
-
   render() {
     return (
       <Layout>

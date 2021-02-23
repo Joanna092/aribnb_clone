@@ -12,6 +12,13 @@ json.bookings do
     json.property do
       json.id booking.property.id
       json.title booking.property.title
+
+      if booking.property.images.any?
+        json.image_url url_for(booking.property.images.slice(-1))
+      else
+        json.image_url booking.property.image_url
+      end
+
     end
   end
 end

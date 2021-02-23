@@ -3,9 +3,7 @@ import ReactDOM from "react-dom";
 import Layout from "@src/user/layout";
 import { safeCredentials, handleErrors } from "../utils/fetchHelper";
 
-import 'react-dates/initialize';
-import { DateRangePicker } from 'react-dates';
-import 'react-dates/lib/css/_datepicker.css';
+import '../home.scss';
 
 class Userpage extends React.Component {
   constructor() {
@@ -15,9 +13,8 @@ class Userpage extends React.Component {
       loading: true,
       user_bookings: [],
       username: " ",
-
+      email: " ",
     };
-    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -27,6 +24,7 @@ class Userpage extends React.Component {
         console.log(data);
         this.setState({
           username: data.username,
+          email: data.email
         });
       })
       .then(() => {
@@ -38,15 +36,6 @@ class Userpage extends React.Component {
               user_bookings: data.bookings,
             });
           });
-      });
-  }
-
-  handleClick() {
-    fetch("/api/logout")
-      .then(handleErrors)
-      .then(function (data) {
-        console.log(data);
-        window.location = "/";
       });
   }
 
@@ -130,45 +119,49 @@ class Userpage extends React.Component {
     const { user_bookings } = this.state;
     return (
       <Layout>
-        <div className="container">
-        <h3 className="text-center">Your profile</h3>
-          <div className="row">
-            <div className="col-10">
-              <p>Username: {this.state.username}</p>
+        
+        <div className="text-left ml-2 mt-2">
+              <p><b>Your username:</b> {this.state.username}</p>
+              <p><b>Your email:</b> {this.state.email}</p>
             </div>
-            <div className="col-2">
-              <button className="btn btn-danger" onClick={this.handleClick}>
-                Log Out
-              </button>
-            </div>
-          </div>
-        </div>
+          
 
-        <h3 className="text-center">Your bookings</h3>
+        <h2 className="text-center">Your bookings</h2>
         <div className="container pt-4">
           <div className="row">
             {user_bookings.map(booking => {
               return (
                 <div key={booking.id} className="col-6 col-lg-4 mb-4 property">
-                  <h6 className="mb-0">{booking.property.title}</h6>
-                  <b><a href={`/property/${booking.property.id}`} className="text-body text-decoration-none">See your property</a></b>
-                {/* <div className="property-image mb-1 rounded" style={{ backgroundImage: `url(${booking.property.image_url})` }} /> */}
-                    <p className="text-uppercase mb-0 text-secondary">{booking.start_date}</p>
-                    <p className="text-uppercase mb-0 text-secondary">{booking.end_date}</p>
+                  <h6 className="mb-2 text-center">{booking.property.title}</h6>
+                  <a href={`/property/${booking.property.id}`}><div className="property-image mb-1 rounded" style={{ backgroundImage: `url(${booking.property.image_url})` }} /> </a>
+                    <p className="text-uppercase mb-0 text-secondary text-center">{booking.start_date} - {booking.end_date}</p>
+                    <p className="text-center text-base"><b><a href={`/property/${booking.property.id}`}>See your property</a></b></p>
+                    <div className="grid">
+                    <div className="grid-row">
                     {
-                    booking.paid ? <p className="mb-0">PAID</p> : 
-                    <button onClick={() => this.submitBooking(booking.id, booking.start_date, booking.end_date)}
+                    booking.paid ? 
+                    
+                    <button 
+                    className="btn btn-warning narrow">PAID
+                    </button> 
+                    
+                    : 
+                   
+                    <button 
+                    onClick={() => this.submitBooking(booking.id, booking.start_date, booking.end_date)}
+                    className="btn btn-secondary wide"
                     >Finish payment process</button>
                     }
-                  
-
+                   
                   <button
                       onClick={() => this.deleteBooking(booking.id)}
                       type="button"
-                      className="btn btn-danger"
+                      className="btn btn-danger wide"
                     >
                       Delete your booking
                     </button>
+                    </div>
+                  </div>
                 </div>
               )
             })}

@@ -5,3 +5,33 @@
       background-position: center;
     }
   }
+
+.btn-warning {
+  border-color: black !important; // #ffc107 !important;
+  border: 1px solid black !important; 
+}
+.btn-warning:hover {
+  color: #212529 !important;
+  background-color: #ffc107 !important;
+  border-color: black !important; // #ffc107 !important;
+  border: 1px solid black !important; 
+}
+
+a {
+  color: black !important;
+}
+
+.grid {
+  width: 100%;
+}
+
+.grid-row {
+  display: flex;
+}
+
+.narrow {
+  flex: 1;
+}
+.wide {
+  flex: 2;
+}
