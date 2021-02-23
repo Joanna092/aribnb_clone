@@ -59,6 +59,7 @@ class PaymentSuccess extends React.Component {
         <p>Thank You!</p>
         <p>Your payment is complete.</p>
         <p>Booked property:</p>
+        
         <h1 className="text-center">{title}</h1>
         <div className="row">
           
