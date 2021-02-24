@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import Hostlayout from "@src/host/host_layout";
 import { handleErrors, safeCredentialsForm } from './utils/fetchHelper';
 
+import '../user/home.scss';
 
 class Addproperty extends React.Component {
 
@@ -77,15 +78,16 @@ class Addproperty extends React.Component {
         if (data.success !== false) {
           this.setState({
             error: false,
-            successMessage: "Signup successfull! You can login now.",
+            successMessage: "Added property.",
           })
          window.location = `/hosting/${data.property.property_id}/success`;
         } else {
           this.setState({
             error: true,
             failureMessage:
-              "Signup failed. Please check if your email address is correct and your password has at least 8 characters.",
+              "You wasn't able to add property. Please check if you filled all input and image fields.",
           });
+          console.log(this.state.failureMessage)
         }
       });
   };
@@ -110,8 +112,10 @@ class Addproperty extends React.Component {
 
     return (
       <Hostlayout>
+        <h1 className="text-center heading_add">Add new property</h1>
         <div className="container">
-          <form onSubmit={this.submit}>
+          
+          <form className="add_form" onSubmit={this.submit}>
             <div className="form-group">
               <div className="row">
                 <div className="col-3">
@@ -165,9 +169,10 @@ class Addproperty extends React.Component {
                     id="exampleFormControlTextarea1"
                     rows="3"
                     name="description"
+                    placeholder="description"
                     value={description}
                     onChange={this.handleChange}
-                    required
+                    
                   ></textarea>
                 </div>
               </div>
@@ -248,6 +253,7 @@ class Addproperty extends React.Component {
                     id="exampleFormControlInput1"
                     placeholder="price"
                     name="price_per_night"
+                    min="0"
                     value={price_per_night}
                     onChange={this.handleChange}
                     required
@@ -269,6 +275,7 @@ class Addproperty extends React.Component {
                     id="exampleFormControlInput1"
                     placeholder="guests"
                     name="max_guests"
+                    min="0"
                     value={max_guests}
                     onChange={this.handleChange}
                     required
@@ -290,6 +297,7 @@ class Addproperty extends React.Component {
                     placeholder="bedrooms"
                     name="bedrooms"
                     value={bedrooms}
+                    min="0"
                     onChange={this.handleChange}
                     required
                   />
@@ -310,6 +318,7 @@ class Addproperty extends React.Component {
                     id="exampleFormControlInput1"
                     placeholder="beds"
                     name="beds"
+                    min="0"
                     value={beds}
                     onChange={this.handleChange}
                     required
@@ -327,6 +336,7 @@ class Addproperty extends React.Component {
                 <div className="col-9">
                   <input
                     type="number"
+                    min="0"
                     class="form-control"
                     id="exampleFormControlInput1"
                     placeholder="baths"
@@ -338,9 +348,12 @@ class Addproperty extends React.Component {
                 </div>
               </div>
             </div>
-            <button type="submit" className="btn btn-secondary tweet_button">
+            <div className="col-12 text-center">
+            <button type="submit" className="btn btn-secondary add_button">
                 Add new property
               </button>
+              <p>{this.state.failureMessage}</p>
+              </div>
           </form>
         </div>
       </Hostlayout>
