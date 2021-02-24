@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Layout from '@src/user/layout';
 import { handleErrors } from './utils/fetchHelper';
 
+import './home.scss';
 
 class PaymentSuccess extends React.Component {
 
@@ -13,6 +14,7 @@ class PaymentSuccess extends React.Component {
     user: {},
     loading: true,
     }
+    this.handleClick = this.handleClick.bind(this);
   }
 
     componentDidMount() {
@@ -29,9 +31,11 @@ class PaymentSuccess extends React.Component {
           })
         })
     }
-      
-    
 
+    handleClick() {
+      window.location = "/userpage";
+    }
+      
   render () {
 
     const {
@@ -56,11 +60,13 @@ class PaymentSuccess extends React.Component {
     return (
       <Layout>
         <div className="container">
-        <p>Thank You!</p>
-        <p>Your payment is complete.</p>
-        <p>Booked property:</p>
+      
+      <div className="booking_completed">
+        <h1 className="text-center">Thank You!</h1>
+        <p className="text-center">Your payment is complete.</p>
+        <p className="text-center">Booked property: <h5 className="text-center">{title}</h5></p>
+      </div>
         
-        <h1 className="text-center">{title}</h1>
         <div className="row">
           
 <div className="col">
@@ -87,6 +93,11 @@ class PaymentSuccess extends React.Component {
               </div>
               <hr />
               <p>{description}</p>
+
+              <button 
+              className="btn btn-primary"
+              onClick={this.handleClick}
+              >Go to your bookings</button>
             </div>
           </div>
 

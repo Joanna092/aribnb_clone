@@ -1,3 +1,5 @@
+//home
+
 .property {
     .property-image {
       padding-top: calc(2 / 3 * 100%); /* aspect ratio 3:2 */
@@ -5,6 +7,8 @@
       background-position: center;
     }
   }
+
+//userpage
 
 .btn-warning {
   border-color: black !important; // #ffc107 !important;
@@ -35,4 +39,11 @@ a {
 }
 .wide {
   flex: 2;
+}
+
+//success message
+
+.booking_completed {
+  padding: 25px;
+  margin: 25px;
 }
