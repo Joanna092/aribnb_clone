@@ -37,6 +37,7 @@ module Api
             property:
               {
                 username: user.username,
+                property_id: @property.id,
                 title: @property.title,
                 description: @property.description,
                 country: @property.country,

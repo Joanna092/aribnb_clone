@@ -23,7 +23,8 @@ class Addproperty extends React.Component {
       bedrooms: "",
       beds: "",
       baths: "",
-      images: []
+      images: [],
+      property_id: ""
     };
 
     this.submit= this.submit.bind(this);
@@ -51,6 +52,7 @@ class Addproperty extends React.Component {
     }
 
     // Set other params in the form data.
+    formData.set('property[property_id]', this.state.property_id);
     formData.set('property[title]', this.state.title);
     formData.set('property[description]', this.state.description);
     formData.set('property[country]', this.state.country);
@@ -76,7 +78,8 @@ class Addproperty extends React.Component {
           this.setState({
             error: false,
             successMessage: "Signup successfull! You can login now.",
-          });
+          })
+         window.location = `/hosting/${data.property.property_id}/success`;
         } else {
           this.setState({
             error: true,
