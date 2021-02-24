@@ -83,7 +83,7 @@ class PaymentSuccess extends React.Component {
 
               <div>
                 <p className="mb-0 text-capitalize"><b>{property_type}</b></p>
-                <p>Price per night: {price_per_night}</p>
+                <p>Price per night: ${price_per_night}</p>
                 <p>
                   <span className="mr-3">{max_guests} guests</span>
                   <span className="mr-3">{bedrooms} bedroom</span>
