@@ -4,9 +4,9 @@ import ReactDOM from 'react-dom';
 import Layout from '@src/user/layout';
 import LoginWidget from './loginWidget';
 import SignupWidget from './signupWidget';
-import { safeCredentials, handleErrors } from '@utils/fetchHelper';
+import { safeCredentials, handleErrors } from '../utils/fetchHelper';
 
-class Login extends React.Component {
+class Hostlogin extends React.Component {
   state = {
     authenticated: false,
     show_login: true,
@@ -62,4 +62,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default Hostlogin;

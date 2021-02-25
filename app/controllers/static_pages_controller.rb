@@ -14,6 +14,10 @@ class StaticPagesController < ApplicationController
     render 'login'
   end
 
+  def host_login
+    render 'host_login'
+  end
+
   def paymentSuccess
     @user_data = authorize
     return unless @user_data
@@ -29,6 +33,9 @@ class StaticPagesController < ApplicationController
   end
 
   def host_home
+    @user_data = authorize_host
+    return unless @user_data
+    
     render 'host_home'
   end
 
@@ -78,7 +85,7 @@ class StaticPagesController < ApplicationController
     session = Session.find_by(token: token)
 
     unless session
-      redirect_to '/hosting'
+      redirect_to '/hosting/hostinglogin'
       return
     end
     session.user.to_json

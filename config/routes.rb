@@ -8,11 +8,12 @@ Rails.application.routes.draw do
   get '/hosting/edit/property/:id' => 'static_pages#edit_property' # display edit chosen property of a host
 
   get '/login' => 'static_pages#login'
+  get '/hosting/hostinglogin' => 'static_pages#host_login'
 
   get '/booking/:id/success' => 'static_pages#paymentSuccess'
   get '/userpage' => 'static_pages#userpage'
-  get '/hosting' => 'static_pages#host_home'
-  get '/hosting/host_property' => 'static_pages#host_property'
+  get '/hosting' => 'static_pages#host_property'
+  #get '/hosting/host_property' => 'static_pages#host_property'
   get '/hosting/add_property' => 'static_pages#add_property'
   get '/hosting/:id/success' => 'static_pages#property_success'
 

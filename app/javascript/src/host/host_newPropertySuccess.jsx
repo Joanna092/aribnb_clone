@@ -33,7 +33,7 @@ class Propertysuccess extends React.Component {
     }
 
     handleClick() {
-      window.location = "/hosting/host_property";
+      window.location = "/hosting/";
     }
 
 

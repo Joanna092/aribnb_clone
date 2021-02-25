@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Login from './login';
+import Hostlogin from './host_login';
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Login />,
+    <Hostlogin />,
     document.body.appendChild(document.createElement('div')),
   )
 })

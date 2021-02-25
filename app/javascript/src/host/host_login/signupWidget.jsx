@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { safeCredentials, handleErrors } from '@utils/fetchHelper';
+import { safeCredentials, handleErrors } from '../utils/fetchHelper';
 
 class SignupWidget extends React.Component {
   state = {
@@ -65,7 +65,7 @@ class SignupWidget extends React.Component {
       .then(data => {
         if (data.success) {
           const params = new URLSearchParams(window.location.search);
-          const redirect_url = params.get('redirect_url') || '/';
+          const redirect_url = params.get('redirect_url') || '/hosting';
           window.location = redirect_url;
         }
       })
@@ -87,7 +87,7 @@ class SignupWidget extends React.Component {
           <button type="submit" className="btn btn-danger btn-block btn-lg">Sign up</button>
         </form>
         <hr/>
-        <p className="mb-0">Already have an account? <a className="text-primary" onClick={this.props.toggle}>Log in</a></p>
+        <p className="mb-0">Already have a host account? <a className="text-primary" onClick={this.props.toggle}>Log in</a></p>
       </React.Fragment>
     )
   }
