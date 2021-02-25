@@ -158,18 +158,22 @@ class Editproperty extends React.Component {
 
     return (
       <Hostlayout>
-        <div className="container">
-          <h1 className="text-center">Your property</h1>
-          <div className="row">
-            <div className="info col-12 col-lg-7">
-              <div className="mb-3">
-                <h3 className="mb-0">{property.title}</h3>            
-                <img className="img-fluid" src={property.image_url} alt="property image" />   
+           <h1 className="text-center mt-4">Property information</h1>
+           <div className="container property_info">
+           <h3 className="mt-3 mb-3 text-center">{property.title}</h3>   
+          <div className="row text">
+         
+            <div className="col-12 col-lg-6">
+                <img className="img-fluid property_info_img" src={property.image_url} alt="property image" />   
+                <div className="centered">
                 <p className="text-uppercase mb-0 text-secondary"><small>{property.country}, {property.city}</small></p>
                 <p className="mb-0"><small>Hosted by <b>{username}</b></small></p>
-              </div>
-              <div>
-                <p className="mb-0 text-capitalize"><b>{property.property_type}</b></p>
+                </div>
+            </div>
+             
+            <div className="col-12 col-lg-6">
+        
+                <p className=""><b>{property.property_type}</b></p>
                 <p>Price per night: {property.price_per_night}</p>
                 <p>
                   <span className="mr-3">{property.max_guests} guests</span>
@@ -177,13 +181,13 @@ class Editproperty extends React.Component {
                   <span className="mr-3">{property.beds} bed</span>
                   <span className="mr-3">{property.baths} bath</span>
                 </p>
-              </div>
+            
               <hr />
               <p>{property.description}</p>
-            </div>
-          </div>
+            
+          
          
-          {bookings.length != 0 ? <span><p>BOOKED</p><p>Booking information:</p></span> : <p>FREE</p>}
+          {bookings.length != 0 ? <span><p>BOOKED</p><p>Booking information:</p></span> : <p>FREE TO BOOK</p>}
 
           {bookings.map(booking => {
               return (
@@ -195,6 +199,8 @@ class Editproperty extends React.Component {
                    </div>
               )
                    })}
+                   </div>
+                   </div>
         </div>
 
 
@@ -202,7 +208,7 @@ class Editproperty extends React.Component {
 
         <div className="container">
         <h1 className="text-center">Edit your property</h1>
-          <form onSubmit={this.submit}>
+          <form className="add_form" onSubmit={this.submit}>
 
             <div className="form-group">
               <div className="row">
@@ -337,6 +343,7 @@ class Editproperty extends React.Component {
                     placeholder={property.price_per_night}
                     name="price_per_night"
                     value={price_per_night}
+                    min="0"
                     onChange={this.handleChange}
                   />
                 </div>
@@ -357,6 +364,7 @@ class Editproperty extends React.Component {
                     placeholder={property.max_guests}
                     name="max_guests"
                     value={max_guests}
+                    min="0"
                     onChange={this.handleChange}
                   />
                 </div>
@@ -375,6 +383,7 @@ class Editproperty extends React.Component {
                     id="exampleFormControlInput1"
                     placeholder={property.bedrooms}
                     name="bedrooms"
+                    min="0"
                     value={bedrooms}
                     onChange={this.handleChange}
                   />
@@ -395,6 +404,7 @@ class Editproperty extends React.Component {
                     id="exampleFormControlInput1"
                     placeholder={property.beds}
                     name="beds"
+                    min="0"
                     value={beds}
                     onChange={this.handleChange}
                   />
@@ -415,13 +425,14 @@ class Editproperty extends React.Component {
                     id="exampleFormControlInput1"
                     placeholder={property.baths}
                     name="baths"
+                    min="0"
                     value={baths}
                     onChange={this.handleChange}
                   />
                 </div>
               </div>
             </div>
-            <button type="submit" className="btn btn-secondary tweet_button">
+            <button type="submit" className="btn btn-secondary add_button">
                 Update your property
               </button>
           </form>
