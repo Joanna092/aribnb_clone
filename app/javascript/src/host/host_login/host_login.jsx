@@ -1,7 +1,7 @@
 // login.jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Layout from '@src/user/layout';
+import Hostlayout from "@src/host/host_layout";
 import LoginWidget from './loginWidget';
 import SignupWidget from './signupWidget';
 import { safeCredentials, handleErrors } from '../utils/fetchHelper';
@@ -32,7 +32,7 @@ class Hostlogin extends React.Component {
     const { authenticated, show_login } = this.state;
     if (authenticated) {
       return (
-        <Layout>
+        <Hostlayout>
           <div className="container">
             <div className="row">
               <div className="col-12 col-md-9 col-lg-6 mx-auto my-4">
@@ -42,12 +42,12 @@ class Hostlogin extends React.Component {
               </div>
             </div>
           </div>
-        </Layout>
+        </Hostlayout>
       );
     };
 
     return (
-      <Layout>
+      <Hostlayout>
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-9 col-lg-6 mx-auto my-4">
@@ -57,7 +57,7 @@ class Hostlogin extends React.Component {
             </div>
           </div>
         </div>
-      </Layout>
+      </Hostlayout>
     )
   }
 }
