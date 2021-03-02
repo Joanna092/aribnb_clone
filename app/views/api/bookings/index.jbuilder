@@ -12,6 +12,8 @@ json.bookings do
     json.property do
       json.id booking.property.id
       json.title booking.property.title
+    #  json.city booking.property.city
+    #  json.price_per_night booking.property.price_per_night
 
       if booking.property.images.any?
         json.image_url url_for(booking.property.images.slice(-1))

@@ -13,6 +13,9 @@ module Api
       @properties = Property.order(created_at: :desc).page(params[:page]).per(6)
       return render json: { error: 'not_found' }, status: :not_found unless @properties
 
+    # booking = Booking.find_by(id: params[:id]) ### testing
+    # return render json: { error: 'cannot find booking' }, status: :not_found unless booking ### testing
+
       user = User.find_by(username: params[:username])
 
       if user
@@ -122,7 +125,7 @@ module Api
     private
 
     def properties_params
-      params.require(:property).permit(:title, :description, :city, :country, :price, :price_per_night, :max_guests, :bedrooms, :beds, :baths, :property_type, images: [])
+      params.require(:property).permit(:booking_id,:title, :description, :city, :country, :price, :price_per_night, :max_guests, :bedrooms, :beds, :baths, :property_type, images: [])
     end
   end
 end
