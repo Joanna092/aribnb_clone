@@ -12,37 +12,24 @@ class Userpage extends React.Component {
       properties: [],
       loading: true,
       user_bookings: [],
-      username: " ",
-      email: " ",
     };
   }
 
   componentDidMount() {
-    fetch("/api/authenticated")
-      .then(handleErrors)
-      .then((data) => {
-        console.log(data);
-        this.setState({
-          username: data.username,
-          email: data.email
-        });
-      })
-      .then(() => {
-        fetch(`/api/users/${this.state.username}/bookings`) 
+        fetch(`/api/users/${this.props.user_data.username}/bookings`) 
           .then(handleErrors)
           .then((data) => {
             console.log(data);
             this.setState({
               user_bookings: data.bookings,
             });
-          });
       });
   }
 
   deleteBooking(id) {
     console.log(`deleted booking with id: ${id}`);
     fetch(
-      `/api/users/${this.state.username}/bookings/${id}`,   
+      `/api/users/${this.props.user_data.username}/bookings/${id}`,   
       safeCredentials({
         method: "DELETE",
       })
@@ -55,7 +42,7 @@ class Userpage extends React.Component {
         console.log("Could not delete bookings");
       })
       .then(() => {
-        fetch(`/api/users/${this.state.username}/bookings`)
+        fetch(`/api/users/${this.props.user_data.username}/bookings`)
           .then(handleErrors)
           .then((data) => {
             this.setState({ user_bookings: data.bookings });
@@ -121,8 +108,8 @@ class Userpage extends React.Component {
       <Layout>
         
         <div className="text-left ml-2 mt-2">
-              <p><b>Your username:</b> {this.state.username}</p>
-              <p><b>Your email:</b> {this.state.email}</p>
+              <p><b>Your username:</b> {this.props.user_data.username}</p>
+              <p><b>Your email:</b> {this.props.user_data.email}</p>
             </div>
           
 
@@ -173,11 +160,11 @@ class Userpage extends React.Component {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // const node = document.getElementById('params');
-  // const user_data = JSON.parse(node.getAttribute('data-user'));
+   const node = document.getElementById('params');
+   const user_data = JSON.parse(node.getAttribute('data-user'));
 
   ReactDOM.render(
-    <Userpage /*user_data={user_data}*/ />,
+    <Userpage user_data={user_data} />,
     document.body.appendChild(document.createElement("div"))
   );
 });

@@ -13,7 +13,7 @@ class Editproperty extends React.Component {
     user: {},
     loading: true,
     bookings: [],
-    username: "Joanna092",
+    username: "",
     error: "",
     successMessage: "",
     failureMessage: "",

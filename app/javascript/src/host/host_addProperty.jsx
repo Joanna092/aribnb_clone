@@ -10,7 +10,6 @@ class Addproperty extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "Joanna092",
       error: "",
       successMessage: "",
       failureMessage: "",
