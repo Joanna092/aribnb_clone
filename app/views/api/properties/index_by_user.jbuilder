@@ -16,5 +16,12 @@ json.properties do
       # json.image nil
       json.image_url property.image_url
     end
+
+    if @booking.present?
+      json.user booking.user.username
+      json.email booking.user.email
+      json.paid booking.is_paid?
+    end
+
   end
 end

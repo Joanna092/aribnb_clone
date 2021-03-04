@@ -8,6 +8,7 @@ class SignupWidget extends React.Component {
     password: '',
     username: '',
     error: '',
+    failureMessage: "",
   }
 
   handleChange = (e) => {
@@ -42,6 +43,7 @@ class SignupWidget extends React.Component {
       .catch(error => {
         this.setState({
           error: 'Could not sign up.',
+          failureMessage: "Signup failed. Please check if your email address is correct and your password has at least 8 characters.",
         })
       })
   }
@@ -77,7 +79,7 @@ class SignupWidget extends React.Component {
   }
 
   render () {
-    const { email, password, username, error } = this.state;
+    const { email, password, username, error, failureMessage } = this.state;
     return (
       <React.Fragment>
         <form onSubmit={this.signup}>
@@ -88,6 +90,7 @@ class SignupWidget extends React.Component {
         </form>
         <hr/>
         <p className="mb-0">Already have a host account? <a className="text-primary" onClick={this.props.toggle}>Log in</a></p>
+        <p className="text-danger mt-2">{failureMessage}</p>
       </React.Fragment>
     )
   }
