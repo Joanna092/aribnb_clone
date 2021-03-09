@@ -78,12 +78,32 @@ class Hostproperty extends React.Component {
           <div className="row">
             {user_properties.map(property => {
               return (
-                <div key={property.id} className="col-6 col-lg-4 mb-4">
-                  <div className="mb-1 rounded"><img className="test img-fluid" src={property.image_url} /></div>
+                <div key={property.id} className="col-6 col-lg-4 mb-4 property">
+                  <div className="mb-1 rounded property-image" style={{ backgroundImage: `url(${property.image_url})` }} /> 
+
+<div className="row">
+<div className="col">
+
                     <p className="text-uppercase mb-0 text-secondary"><small><b>{property.city}</b></small></p>
                     <h6 className="mb-0">{property.title}</h6>
                     <p className="mb-0"><small>${property.price_per_night} USD/night</small></p>
-                
+
+</div>
+
+                 
+<div className="col">
+                     {property.bookings[1] ? 
+                     <div className="pt-4 pr-4">
+                     <button
+                      type="button"
+                      className="btn btn-success"
+                    >BOOKED
+                    </button>
+                    </div>
+                     : <span></span>} 
+</div>
+</div>
+
                   <button
                       onClick={() => this.editProperty(property.id)}
                       type="button"

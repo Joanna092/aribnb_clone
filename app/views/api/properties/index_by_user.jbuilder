@@ -13,14 +13,14 @@ json.properties do
     if property.images.any?
       json.image_url url_for(property.images.slice(-1))
     else
-      # json.image nil
       json.image_url property.image_url
     end
 
-    if @booking.present?
-      json.user booking.user.username
-      json.email booking.user.email
-      json.paid booking.is_paid?
+    json.bookings do
+      json.array! property.bookings do |booking|
+        json.id booking.id
+       # json.paid booking.paid 
+      end
     end
 
   end
