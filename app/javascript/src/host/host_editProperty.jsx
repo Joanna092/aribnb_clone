@@ -102,13 +102,14 @@ class Editproperty extends React.Component {
         if (data.success !== false) {
           this.setState({
             error: false,
-            successMessage: "Signup successfull! You can login now.",
+            successMessage: "Edit successfull!",
           });
+          window.location = `/hosting/${property_id}/edited_success`;
         } else {
           this.setState({
             error: true,
             failureMessage:
-              "Signup failed. Please check if your email address is correct and your password has at least 8 characters.",
+              "Edit failed.",
           });
         }
       });

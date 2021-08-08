@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.configure do
+
+  config.require_master_key = true 
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.

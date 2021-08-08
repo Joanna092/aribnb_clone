@@ -3,7 +3,7 @@
   "private": true,
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
-    "@rails/webpacker": "^5.2.1",
+    "@rails/webpacker": "^5.4.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "^4.3.1",
     "dotenv": "^8.2.0",

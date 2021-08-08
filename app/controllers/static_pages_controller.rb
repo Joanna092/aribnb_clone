@@ -67,6 +67,13 @@ class StaticPagesController < ApplicationController
     render 'property_success'
   end
 
+  def edited_success
+    @user_data = authorize_host
+    return unless @user_data
+
+    render 'edited_success'
+  end
+
   private
 
   def authorize

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   #get '/hosting/host_property' => 'static_pages#host_property'
   get '/hosting/add_property' => 'static_pages#add_property'
   get '/hosting/:id/success' => 'static_pages#property_success'
+  get '/hosting/:id/edited_success' => 'static_pages#edited_success'
 
   namespace :api do
     # Add routes below this line
