@@ -44,6 +44,7 @@ class BookingWidget extends React.Component {
     if (e) { e.preventDefault(); }
     const { startDate, endDate } = this.state;
     console.log(startDate.format('MMM DD YYYY'), endDate.format('MMM DD YYYY'));
+    console.log(process.env.STRIPE_PUBLISHABLE_KEY) //doesn't work 
 
     fetch(`/api/bookings`, safeCredentials({
       method: 'POST',
@@ -70,7 +71,7 @@ class BookingWidget extends React.Component {
     }))
       .then(handleErrors)
       .then(response => {
-
+        
         const stripe = Stripe(process.env.STRIPE_PUBLISHABLE_KEY);
       
        

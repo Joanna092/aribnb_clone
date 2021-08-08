@@ -5,6 +5,8 @@ module Api
     skip_before_action :verify_authenticity_token, only: [:mark_complete]
 
     def create
+      url = ENV['URL']
+
       token = cookies.signed[:airbnb_session_token]
       session = Session.find_by(token: token)
       return render json: { error: 'user not logged in' }, status: :unauthorized unless session
@@ -25,8 +27,9 @@ module Api
           currency: 'usd',
           quantity: 1
         }],
-        success_url: "#{ENV['URL']}/booking/#{booking.id}/success",
-        cancel_url: "#{ENV['URL']}#{params[:cancel_url]}"
+      #  success_url: "#{ENV['URL']}/booking/#{booking.id}/success",
+         success_url: "#{url}/booking/#{booking.id}/success",
+         cancel_url: "#{url}#{params[:cancel_url]}"
       )
 
       @charge = booking.charges.new({
