@@ -20,11 +20,11 @@ Rails.application.routes.draw do
 
   namespace :api do
     # Add routes below this line
-    resources :users, only: [:create]
+    resources :users, only: %i[index show create]
     resources :sessions, only: %i[create destroy]
     resources :properties, only: %i[index show create update]
     resources :properties, only: [:create]
-    resources :bookings, only: %i[index create]
+    resources :bookings, only: %i[index show create]
     resources :charges, only: [:create]
 
     delete '/logout' => 'sessions#destroy'
