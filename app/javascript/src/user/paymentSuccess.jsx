@@ -10,6 +10,7 @@ class PaymentSuccess extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+    booking: {},
     property: {},
     user: {},
     loading: true,
@@ -18,15 +19,16 @@ class PaymentSuccess extends React.Component {
   }
 
     componentDidMount() {
-      const property_id = window.location.pathname.replace('/booking/', '').replace('/success','');
-      console.log(property_id)
-      fetch(`/api/properties/${property_id}`) 
+      const booking_id = window.location.pathname.replace('/booking/', '').replace('/success','');
+      console.log(booking_id)
+      fetch(`/api/users/123123123/bookings/${booking_id}`) 
         .then(handleErrors)
         .then(data => {
           console.log(data)
           this.setState({
-            property: data.property,
-            user: data.user,
+            booking: data.booking,
+            property: data.booking.property,
+            user: data.booking.property.user,
             loading: false,
           })
         })
@@ -39,7 +41,6 @@ class PaymentSuccess extends React.Component {
   render () {
 
     const {
-      id,
       title,
       description,
       city,
@@ -75,7 +76,7 @@ class PaymentSuccess extends React.Component {
                 <h3 className="mb-0"></h3>            
                 <img className="img-fluid" src={image_url} alt="property image" />   
                 <p className="text-uppercase mb-0 text-secondary"><small>{country}, {city}</small></p>
-                <p className="mb-0"><small>Hosted by <b>{username}</b></small></p>
+                <p className="mb-0"><small>Hosted by <b>{username}</b></small></p> 
               </div>
 
               </div>

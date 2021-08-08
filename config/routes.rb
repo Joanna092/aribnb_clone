@@ -45,6 +45,9 @@ Rails.application.routes.draw do
     # display bookings booked by given user
     get '/users/:username/bookings' => 'bookings#index_by_user'
 
+    #display booking with given id
+    get '/users/:username/bookings/:id' => 'bookings#show'
+
     # stripe webhook
     post '/charges/mark_complete' => 'charges#mark_complete'
   end
