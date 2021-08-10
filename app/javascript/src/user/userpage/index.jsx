@@ -122,7 +122,7 @@ class Userpage extends React.Component {
                   <h6 className="mb-2 text-center">{booking.property.title}</h6>
                   <a href={`/property/${booking.property.id}`}><div className="property-image mb-1 rounded" style={{ backgroundImage: `url(${booking.property.image_url})` }} /> </a>
                     <p className="text-uppercase mb-0 text-secondary text-center">{booking.start_date} - {booking.end_date}</p>
-                    <p className="text-center text-base"><b><a href={`/property/${booking.property.id}`}>See your property</a></b></p>
+                    <p className="text-center text-base"><b><a href={`/yourproperty/${booking.property.id}`}>See your property</a></b></p>
                     <div className="grid">
                     <div className="grid-row">
                     {

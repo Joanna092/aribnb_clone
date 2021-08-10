@@ -1,0 +1,1 @@
+import '@src/user/userpage/single_property';

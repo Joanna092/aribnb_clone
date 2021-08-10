@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'static_pages#home'
 
   get '/property/:id' => 'static_pages#property'
+  get '/yourproperty/:id' => 'static_pages#single_property'
 
   get '/hosting/edit/property/:id' => 'static_pages#edit_property' # display edit chosen property of a host
 

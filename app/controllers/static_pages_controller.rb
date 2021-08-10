@@ -32,6 +32,11 @@ class StaticPagesController < ApplicationController
     render 'userpage'
   end
 
+  def single_property
+    @data = { property_id: params[:id] }.to_json
+    render 'single_property'
+  end
+
   def host_home
     @user_data = authorize_host
     return unless @user_data
