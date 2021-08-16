@@ -18,5 +18,6 @@ json.properties do
     else
       json.image_url property.image_url
     end
+
   end
 end

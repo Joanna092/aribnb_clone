@@ -20,6 +20,7 @@ json.properties do
       json.array! property.bookings do |booking|
         json.id booking.id
        # json.paid booking.paid 
+       json.paid booking.is_paid?
       end
     end
 

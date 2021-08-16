@@ -19,6 +19,14 @@ json.property do
   else
     json.image_url @property.image_url
   end
+
+  json.bookings do
+      json.array! @property.bookings do |booking|
+        json.id booking.id
+        json.paid booking.is_paid?
+      end
+    end
+
 end
 
 json.user do

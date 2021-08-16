@@ -13,21 +13,27 @@ class SingleProperty extends React.Component {
         property: {},
         user: {},
         loading: true,
+        booking: {}
     }
     this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
     console.log(process.env.STRIPE_PUBLISHABLE_KEY)
-    const property_id = window.location.pathname.replace('/yourproperty/', '');
-    console.log(property_id);
-    fetch(`/api/properties/${property_id}`)
+    const user_id =  window.location.pathname.replace('/yourproperty/', '');
+    console.log(user_id)
+
+    const url = window.location.pathname
+    const booking_id = url.substring(url.lastIndexOf("/") + 1);
+    console.log(booking_id); 
+
+    fetch(`/api/users/${user_id}/bookings/${booking_id}`) //${this.props.user_data.username} ${booking_id}
       .then(handleErrors)
       .then(data => {
         console.log(data)
         this.setState({
-          property: data.property,
-          user: data.user,
+          booking: data.booking,
+          user: data.booking.property.user,
           loading: false,
         })
       })
@@ -39,10 +45,14 @@ class SingleProperty extends React.Component {
       
   render () {
 
-    const { user, property, loading } = this.state;
+    const { user, loading, booking } = this.state;
     if (loading) {
       return <p>loading...</p>;
     };
+
+    const {
+      paid,
+    } = booking
 
     const {
         id,
@@ -57,8 +67,8 @@ class SingleProperty extends React.Component {
         beds,
         baths,
         image_url,
-      } = property
-  
+      } = booking.property 
+
       const {
         username
       } = user
@@ -68,7 +78,7 @@ class SingleProperty extends React.Component {
         <div className="container">
       
       <div className="booking_completed">
-        <p className="text-center">Your property: <h5 className="text-center">{title}</h5></p>
+        <span className="text-center">Your property: <h5 className="text-center">{title}</h5></span>
       </div>
         
         <div className="row">
@@ -97,6 +107,21 @@ class SingleProperty extends React.Component {
               </div>
               <hr />
               <p>{description}</p>
+
+              {
+                    paid ? 
+                    
+                    <button 
+                    className="btn btn-warning narrow">PAID
+                    </button> 
+                    
+                    : 
+                   
+                    <button 
+                    className="btn btn-secondary wide"
+                    >Finish payment process</button>
+                    }
+
 
               <button 
               className="btn btn-primary"
