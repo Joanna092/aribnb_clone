@@ -52,6 +52,8 @@ class SingleProperty extends React.Component {
 
     const {
       paid,
+      start_date,
+      end_date,
     } = booking
 
     const {
@@ -107,7 +109,10 @@ class SingleProperty extends React.Component {
               </div>
               <hr />
               <p>{description}</p>
-
+              <hr />
+              <p>From: {start_date}</p>
+              <p>To: {end_date}</p>
+              <hr />
               {
                     paid ? 
                     
