@@ -195,7 +195,7 @@ class Editproperty extends React.Component {
 
           {bookings.map(booking => {
               return (
-              <div className="border" key={booking.id}>
+              <div className="booking_info" key={booking.id}>
                    <p>From: {booking.start_date} To: {booking.end_date}</p>
                    <p>By: {booking.user}</p>
                    <p>Contact: {booking.email}</p>
