@@ -159,8 +159,11 @@ class Editproperty extends React.Component {
 
     return (
       <Hostlayout>
-           <h1 className="text-center mt-4">Property information</h1>
-           <div className="container property_info">
+
+        <h1 className="text-center mt-4">Property information</h1>
+       <div className="container property_info">
+           
+           
            <h3 className="mt-3 mb-3 text-center">{property.title}</h3>   
           <div className="row text">
          
@@ -203,7 +206,7 @@ class Editproperty extends React.Component {
                    </div>
                    </div>
         </div>
-
+      
 
 
 
@@ -438,6 +441,7 @@ class Editproperty extends React.Component {
               </button>
           </form>
         </div>
+        
       </Hostlayout>
     )
   }

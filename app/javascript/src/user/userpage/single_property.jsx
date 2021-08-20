@@ -80,7 +80,7 @@ class SingleProperty extends React.Component {
         <div className="container">
       
       <div className="booking_completed">
-        <span className="text-center">Your property: <h5 className="text-center">{title}</h5></span>
+        <h5 className="text-center">Your property: {title}</h5>
       </div>
         
         <div className="row">

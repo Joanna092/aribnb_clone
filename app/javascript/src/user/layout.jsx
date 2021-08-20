@@ -41,7 +41,7 @@ class Layout extends React.Component {
     if (!authenticated) {
       return (
     <div className="d-flex flex-column min-vh-100">
-      <nav className="navbar navbar-expand navbar-light bg-light">
+      <nav className="navbar navbar-expand navbar-light bg-light pb-20">
         <a href="/"><span className="navbar-brand mb-0 h1 text-danger">Airbnb</span></a>
         <a href="/hosting"><span className="navbar-brand mb-0 text-secondary">Rent property as a host</span></a>
         <div className="collapse navbar-collapse">

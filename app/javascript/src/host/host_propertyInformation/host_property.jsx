@@ -74,7 +74,7 @@ class Hostproperty extends React.Component {
     return (
       <Hostlayout>
         <div className="container pt-4">
-          <h2 className="mb-4 text-center">Your properties</h2>
+          <h2 className="mb-4 text-center mt-2">Your properties</h2>
           <div className="row">
             {user_properties.map(property => {
               return (

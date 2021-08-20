@@ -61,7 +61,7 @@ class EditedPropertySuccess extends React.Component {
 
     return (
       <Hostlayout>
-       <div className="container">
+       <div className="container mt-auto">
       
       <div className="booking_completed">
         <h1 className="text-center">You edited your property</h1>

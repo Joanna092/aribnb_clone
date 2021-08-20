@@ -112,7 +112,7 @@ class Addproperty extends React.Component {
     return (
       <Hostlayout>
         <h1 className="text-center heading_add">Add new property</h1>
-        <div className="container">
+        <div className="container mt-auto">
           
           <form className="add_form" onSubmit={this.submit}>
             <div className="form-group">
