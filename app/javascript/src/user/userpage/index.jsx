@@ -2,16 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Layout from "@src/user/layout";
 import { safeCredentials, handleErrors } from "../utils/fetchHelper";
-
 import '../home.scss';
+import dayjs from "dayjs";
 
 class Userpage extends React.Component {
   constructor() {
     super();
     this.state = {
       properties: [],
+      startDate: null,
+      endDate: null,
       loading: true,
       user_bookings: [],
+      booking_id: 32,
     };
   }
 
@@ -51,31 +54,36 @@ class Userpage extends React.Component {
   }
 
 
-  submitBooking = (id, startDate, endDate) => {
-    //if (e) { e.preventDefault(); }
-    console.log(startDate, endDate);
+ submitBooking = (property_id, booking_id, startDate, endDate) => {
 
-    fetch(`/api/bookings`, safeCredentials({
+    console.log(property_id)
+    console.log(booking_id)
+    console.log(startDate)
+    console.log(endDate)
+    console.log(dayjs(startDate).format('MMM DD YYYY'))
+    console.log(process.env.STRIPE_PUBLISHABLE_KEY) 
+
+    fetch(`/api/bookings/`, safeCredentials({
       method: 'POST',
         body: JSON.stringify({
           booking: {
-            property_id: id,
-            start_date: startDate,
-            end_date: endDate,
+            property_id: property_id,
+            start_date: dayjs(startDate).format('MMM DD YYYY'),
+            end_date: dayjs(endDate).format('MMM DD YYYY')
           }
         })
     }))
       .then(handleErrors)
       .then(response => {
         return this.initiateStripeCheckout(response.booking.id)
-      })
+       }) 
       .catch(error => {
         console.log(error);
       })
   }
 
-  initiateStripeCheckout = (id) => {
-    return fetch(`/api/charges?booking_id=${id}&cancel_url=${window.location.pathname}`, safeCredentials({
+  initiateStripeCheckout = (booking_id) => {
+    return fetch(`/api/charges?booking_id=${booking_id}&cancel_url=${window.location.pathname}`, safeCredentials({
       method: 'POST',
     }))
       .then(handleErrors)
@@ -135,7 +143,7 @@ class Userpage extends React.Component {
                     : 
                    
                     <button 
-                    onClick={() => this.submitBooking(booking.id, booking.start_date, booking.end_date)}
+                    onClick={() => this.submitBooking(booking.property.id, booking.id, booking.start_date, booking.end_date)}
                     className="btn btn-secondary wide"
                     >Finish payment process</button>
                     }
