@@ -49,7 +49,7 @@ class Home extends React.Component {
     const { properties, next_page, loading } = this.state;
     return (
       <Layout>
-        <div className="container mt-auto">
+        <div className="container places">
           <h4 className="mb-1 mt-10">Top-rated places to stay</h4>
           <p className="text-secondary mb-3">Explore some of the best-reviewed stays in the world</p>
           <div className="row">
