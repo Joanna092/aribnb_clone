@@ -63,7 +63,7 @@ class Userpage extends React.Component {
     console.log(dayjs(startDate).format('MMM DD YYYY'))
     console.log(process.env.STRIPE_PUBLISHABLE_KEY) 
 
-    fetch(`/api/bookings/`, safeCredentials({
+    fetch(`/api/users/${this.props.user_data.username}/bookings/`, safeCredentials({
       method: 'POST',
         body: JSON.stringify({
           booking: {
