@@ -41,7 +41,7 @@ class Hostlayout extends React.Component {
     if (!authenticated) {
       return (
 
-    <React.Fragment>
+    <div className="d-flex flex-column min-vh-100">
       <nav className="navbar navbar-expand navbar-light bg-light">
         <a href="/hosting"><span className="navbar-brand mb-0 h1 text-danger">Airbnb - Host</span></a>
         <a href="/"><span className="navbar-brand mb-0 text-secondary">Book property as a quest</span></a>
@@ -54,16 +54,16 @@ class Hostlayout extends React.Component {
         </div>
       </nav>
       {this.props.children}
-      <footer className="p-3 bg-light">
+      <footer className="p-3 bg-light mt-auto">
         <div>
           <p className="mr-3 mb-0 text-secondary">Airbnb Clone</p>
         </div>
       </footer>
-    </React.Fragment>
+    </div>
   );
  } else {
   return (
-    <React.Fragment>
+    <div className="d-flex flex-column min-vh-100">
     <nav className="navbar navbar-expand navbar-light bg-light">
       <a href="/hosting"><span className="navbar-brand mb-0 h1 text-danger">Airbnb - Host</span></a>
       <a href="/"><span className="navbar-brand mb-0 text-secondary">Book property as a quest</span></a>
@@ -86,12 +86,12 @@ class Hostlayout extends React.Component {
       </div>
     </nav>
     {this.props.children}
-    <footer className="p-3 bg-light">
+    <footer className="p-3 bg-light mt-auto">
       <div>
         <p className="mr-3 mb-0 text-secondary">Airbnb Clone</p>
       </div>
     </footer>
-  </React.Fragment>
+  </div>
 );
   }
  }
