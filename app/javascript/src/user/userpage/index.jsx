@@ -53,8 +53,7 @@ class Userpage extends React.Component {
       });
   }
 
-
- submitBooking = (property_id, booking_id, startDate, endDate) => {
+  submitBooking = (property_id, booking_id, startDate, endDate) => {
 
     console.log(property_id)
     console.log(booking_id)
@@ -63,24 +62,8 @@ class Userpage extends React.Component {
     console.log(dayjs(startDate).format('MMM DD YYYY'))
     console.log(process.env.STRIPE_PUBLISHABLE_KEY) 
 
-    fetch(`/api/users/${this.props.user_data.username}/bookings/`, safeCredentials({
-      method: 'POST',
-        body: JSON.stringify({
-          booking: {
-            property_id: property_id,
-            start_date: dayjs(startDate).format('MMM DD YYYY'),
-            end_date: dayjs(endDate).format('MMM DD YYYY')
-          }
-        })
-    }))
-      .then(handleErrors)
-      .then(response => {
-        return this.initiateStripeCheckout(response.booking.id)
-       }) 
-      .catch(error => {
-        console.log(error);
-      })
-  }
+    return this.initiateStripeCheckout(booking_id)
+  } 
 
   initiateStripeCheckout = (booking_id) => {
     return fetch(`/api/charges?booking_id=${booking_id}&cancel_url=${window.location.pathname}`, safeCredentials({
