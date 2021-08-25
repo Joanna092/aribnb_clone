@@ -2,7 +2,7 @@
 
 Rails.application.configure do
 
-  config.require_master_key = true 
+  # config.require_master_key = true
 
   # Settings specified here will take precedence over those in config/application.rb.
 
