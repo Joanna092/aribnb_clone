@@ -92,7 +92,7 @@ class Hostproperty extends React.Component {
 
                  
 <div className="col">
-                     {property.bookings[1] ? 
+                     {property.bookings[0] ? 
                      <div className="pt-4 pr-4">
                      <button
                       type="button"
