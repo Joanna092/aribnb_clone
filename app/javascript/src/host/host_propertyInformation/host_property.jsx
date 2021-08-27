@@ -131,9 +131,4 @@ class Hostproperty extends React.Component {
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
-    <Hostproperty />,
-    document.body.appendChild(document.createElement('div')),
-  )
-})
+export default Hostproperty
