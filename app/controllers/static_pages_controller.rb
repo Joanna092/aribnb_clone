@@ -37,13 +37,6 @@ class StaticPagesController < ApplicationController
     render 'single_property'
   end
 
-  def host_home
-    @user_data = authorize_host
-    return unless @user_data
-    
-    render 'host_home'
-  end
-
   def host_property
     @user_data = authorize_host
     return unless @user_data
