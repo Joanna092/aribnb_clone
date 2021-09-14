@@ -6,6 +6,8 @@ import LoginWidget from './loginWidget';
 import SignupWidget from './signupWidget';
 import { safeCredentials, handleErrors } from '../utils/fetchHelper';
 
+import "./host_login.scss"
+
 class Hostlogin extends React.Component {
   state = {
     authenticated: false,
