@@ -27,11 +27,6 @@ json.property do
       end
     end
 
-    json.user do
-  json.id @property.user.id
-  json.username @property.user.username
-end
-
 end
 
 json.user do
