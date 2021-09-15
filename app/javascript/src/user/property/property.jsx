@@ -60,7 +60,7 @@ class Property extends React.Component {
                 <h3 className="mb-0">{title}</h3>
                 <p className="text-uppercase mb-0 text-secondary"><small>{city}</small></p>
             {/* <p className="mb-0"><small>Hosted by <b>{user.username}</b></small></p> */}
-                <p className="mb-0"><small>Hosted by <b>{username}</b></small></p>
+            {/*    <p className="mb-0"><small>Hosted by <b>{username}</b></small></p> */}
               </div>
               <div>
                 <p className="mb-0 text-capitalize"><b>{property_type}</b></p>

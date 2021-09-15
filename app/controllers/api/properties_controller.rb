@@ -101,7 +101,6 @@ module Api
 
     def show
       @property = Property.find_by(id: params[:id])
-      @user = User.find_by(id: params[:id])
       return render json: { error: 'not_found' }, status: :not_found unless @property
 
       render 'api/properties/show', status: :ok
