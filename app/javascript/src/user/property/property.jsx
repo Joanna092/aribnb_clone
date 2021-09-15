@@ -51,33 +51,39 @@ class Property extends React.Component {
 
     return (
       <Layout>
-        <div className="property-image mb-3" style={{ backgroundImage: `url(${image_url})` }} />
+
         <div className="container">
-          <div className="row">
-            <div className="info col-12 col-lg-7">
-              <div className="mb-3">
-                <h3 className="mb-0">{title}</h3>
-                <p className="text-uppercase mb-0 text-secondary"><small>{city}</small></p>
-            {/* <p className="mb-0"><small>Hosted by <b>{user.username}</b></small></p> */}
-                <p className="mb-0"><small>Hosted by <b>{username}</b></small></p> 
-              </div>
-              <div>
-                <p className="mb-0 text-capitalize"><b>{property_type}</b></p>
+          <div className="mt-5 mb-5">
+        <h3 className="mt-3 mb-3 text-center">{property.title}</h3>  
+          </div>
+          <div className="row"> 
+            <div className="col-md-4">
+                <img className="img-fluid" src={property.image_url} alt="property image" />   
+                <div className="centered">
+                
+                <p className="mb-0"><small>Hosted by <b>{username}</b></small></p>
+                </div>
+            </div>          
+            <div className="col-md-4">     
+                <p className=""><b>{property.property_type}</b></p>
+                <p className>{property.country}, {property.city}</p>
+                <p>Price per night: {property.price_per_night}</p>
                 <p>
-                  <span className="mr-3">{max_guests} guests</span>
-                  <span className="mr-3">{bedrooms} bedroom</span>
-                  <span className="mr-3">{beds} bed</span>
-                  <span className="mr-3">{baths} bath</span>
+                  <span className="mr-3">{property.max_guests} guests</span>
+                  <span className="mr-3">{property.bedrooms} bedroom</span>
+                  <span className="mr-3">{property.beds} bed</span>
+                  <span className="mr-3">{property.baths} bath</span>
                 </p>
-              </div>
               <hr />
-              <p>{description}</p>
-            </div>
-            <div className="col-12 col-lg-5">
+              <p>{property.description}</p>
+</div>
+
+            <div className="col-md-4">
               <BookingWidget property_id={id} price_per_night={price_per_night} />
             </div>
-          </div>
+            </div>
         </div>
+
       </Layout>
     )
   }
