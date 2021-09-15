@@ -30,6 +30,6 @@ json.property do
 end
 
 json.user do
-  json.id @property.user.id
+ # json.id @property.user.id
   json.username @property.user.username
 end
