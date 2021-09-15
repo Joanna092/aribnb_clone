@@ -6,7 +6,7 @@ import { handleErrors } from '../utils/fetchHelper';
 class Property extends React.Component {
   state = {
     property: {},
-    user: {},
+//    user: {},
     loading: true,
   }
 
@@ -18,7 +18,7 @@ class Property extends React.Component {
         console.log(data)
         this.setState({
           property: data.property,
-          user: data.user,
+  //        user: data.user,
           loading: false,
         })
       })
@@ -43,12 +43,12 @@ class Property extends React.Component {
       beds,
       baths,
       image_url,
-     // user,
+      username,
     } = property
 
-    const {
-      username
-    } = user
+//    const {
+//      username
+//    } = user
 
     return (
       <Layout>
@@ -60,7 +60,7 @@ class Property extends React.Component {
                 <h3 className="mb-0">{title}</h3>
                 <p className="text-uppercase mb-0 text-secondary"><small>{city}</small></p>
             {/* <p className="mb-0"><small>Hosted by <b>{user.username}</b></small></p> */}
-            {/*    <p className="mb-0"><small>Hosted by <b>{username}</b></small></p> */}
+                <p className="mb-0"><small>Hosted by <b>{username}</b></small></p> 
               </div>
               <div>
                 <p className="mb-0 text-capitalize"><b>{property_type}</b></p>

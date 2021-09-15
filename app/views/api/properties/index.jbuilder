@@ -6,6 +6,7 @@ json.next_page @properties.next_page
 json.properties do
   json.array! @properties do |property|
     json.id property.id
+   # json.username property.user.username
     json.title property.title
     json.city property.city
     json.country property.country

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 json.property do
+  json.username @property.user.username
   json.id @property.id
   json.title @property.title
   json.description @property.description
@@ -29,7 +30,7 @@ json.property do
 
 end
 
-json.user do
-  json.id @property.user.id
-  json.username @property.user.username
-end
+# json.user do
+#   json.id @property.user.id
+#   json.username @property.user.username
+# end
