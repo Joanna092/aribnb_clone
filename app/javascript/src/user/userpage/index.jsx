@@ -15,6 +15,7 @@ class Userpage extends React.Component {
       loading: true,
       user_bookings: [],
       booking_id: 32,
+      deleted_bookings: []
     };
   }
 
@@ -49,8 +50,12 @@ class Userpage extends React.Component {
           .then(handleErrors)
           .then((data) => {
             this.setState({ user_bookings: data.bookings });
+            this.setState({
+              deleted_bookings: [...this.state.deleted_bookings, id]
+              })
+              });
+              console.log(this.state.deleted_bookings)
           });
-      });
   }
 
   submitBooking = (property_id, booking_id, startDate, endDate) => {
